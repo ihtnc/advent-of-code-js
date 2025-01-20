@@ -1,9 +1,24 @@
-import ChallengeDetails from "@/components/challenge-details";
+import { getInput } from "@/actions/advent-of-code";
+import { getSession } from "@/actions/session";
+import AdventDetails from "@/components/advent-details";
+import SolutionDetails from "@/components/solution-details";
+import { inputParser } from "./utilities";
+import Part1Solver from "./part1";
+import Part2Solver from "./part2";
 
-export default function Page() {
+export default async function Page() {
+  const year = 2024;
+  const day = 1;
+  const session = await getSession();
+  const input = await getInput(session, year, day, false, inputParser);
+  const task1 = Part1Solver(input);
+  const task2 = Part2Solver(input);
+  const [part1, part2] = await Promise.all([task1, task2]);
+
   return (
-    <ChallengeDetails year={2024} day={1}>
-      <p>challenge</p>
-    </ChallengeDetails>
+    <AdventDetails year={year} day={day}>
+      <SolutionDetails part={1} answer={part1} codePath={`app/(year)/${year}/${day}/part1.tsx`} />
+      <SolutionDetails part={2} answer={part2} codePath={`app/(year)/${year}/${day}/part2.tsx`} />
+    </AdventDetails>
   );
 };

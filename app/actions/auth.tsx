@@ -4,7 +4,7 @@ import type { SessionData } from "@/api/session/types";
 import type { Response } from "@/api/types";
 import { FormState } from "./types";
 
-export async function login(state: FormState, formData: FormData) {
+export async function login(state: FormState, formData: FormData): Promise<FormState | undefined> {
   const baseUrl = getApiBaseUrl();
   const request: SessionData = { session: formData.get('session') as string };
 

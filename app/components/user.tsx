@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getCurrentSession } from '@/app-services';
+import { getSession } from '@/actions/session';
 
 export default async function User({
   className,
 }: Readonly<{
   className?: string,
 }>) {
-  const session = await getCurrentSession();
+  const session = await getSession();
   const trimmed = session.length > 15 ? `${session.substring(0, 6)}...${session.substring(session.length - 6)}` : session;
 
   return (
