@@ -3,12 +3,12 @@
 import { useId, useState } from 'react';
 
 export default function ExpandableContainer({
-    text,
+    label,
     children,
     className,
     expanded = false,
   }: Readonly<{
-    text: string,
+    label: React.ReactNode,
     children: React.ReactNode,
     className?: string,
     expanded?: boolean,
@@ -23,10 +23,10 @@ export default function ExpandableContainer({
         onChange={() => setIsExpanded(!isExpanded)}
       />
       <label htmlFor={id} className={className}>
-        {text}
+        {label}
       </label>
 
-      <div className="h-0 collapse opacity-0 transition-all duration-300 peer-checked/expand:h-fit peer-checked/expand:visible peer-checked/expand:opacity-100">
+      <div className="hidden opacity-0 transition-all duration-300 peer-checked/expand:flex peer-checked/expand:visible peer-checked/expand:opacity-100">
         {children}
       </div>
     </>

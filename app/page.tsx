@@ -20,7 +20,7 @@ export default async function Home() {
           <li key={year} className="mb-2">
             <ExpandableContainer
               className="cursor-pointer text-xl hover:underline hover:underline-offset-4 text-center sm:text-2xl sm:text-left max-w-fit"
-              text={`${year}`}
+              label={`${year}`}
               expanded={year === latestYear}
             >
 
