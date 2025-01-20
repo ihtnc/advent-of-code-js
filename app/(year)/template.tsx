@@ -8,7 +8,7 @@ export default function YearTemplate({
   children: React.ReactNode,
 }>) {
   return (
-    <section className="flex flex-col gap-6 w-full text-center content-center">
+    <section className="flex flex-col gap-6 w-full text-center content-center mb-12">
       <User className="pb-6" />
 
       <Link

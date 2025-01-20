@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased caret-transparent`}
       >
-        <div className="flex flex-col items-center justify-items-center min-h-screen min-w-80 p-8 pb-20 sm:p-20 overflow-auto">
+        <div className="flex flex-col items-center justify-items-center min-h-screen min-w-80 p-8 pb-20 sm:p-20">
           <Header />
           {children}
           <Footer />

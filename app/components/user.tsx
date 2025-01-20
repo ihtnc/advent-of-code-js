@@ -1,15 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { getCurrentSession } from '@/app-services';
 
 export default async function User({
   className,
 }: Readonly<{
   className?: string,
 }>) {
+  const session = await getCurrentSession();
+  const trimmed = session.length > 15 ? `${session.substring(0, 6)}...${session.substring(session.length - 6)}` : session;
+
   return (
     <span  className={className}>
       <span className="flex gap-6 items-center justify-center text-sm h-6">
-        <span className="flex gap-2 items-center">
+        <span className="flex gap-2 items-center" title={trimmed}>
           <Image
             aria-hidden
             src="/user.svg"
