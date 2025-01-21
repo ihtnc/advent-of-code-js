@@ -9,7 +9,7 @@ export async function GET() {
       year: 2024,
       problems: [
         { day: 1, stars: 2 },
-        { day: 2, stars: 1 },
+        { day: 2, stars: 2 },
       ],
     }, {
       year: 2023,
