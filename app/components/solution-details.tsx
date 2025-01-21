@@ -1,29 +1,28 @@
 import Image from "next/image";
-import { promises as fs } from "fs";
+import { fetchCode } from "@/actions/code";
 import ExpandableContainer from "./expandable-container";
 import TypescriptCode from "./code-snippet/typescript-code";
+import PuzzlePieceIcon from "@public/images/puzzle-piece.svg";
+import CodeSimple from "@public/images/code-simple.svg";
 
 export default async function SolutionDetails({
+  year,
+  day,
   part,
   answer,
-  codePath,
 } : Readonly<{
+  year: number,
+  day: number,
   part: number,
   answer: number,
-  codePath: string,
 }>) {
-  const contents = await fs.readFile(`${process.cwd()}/${codePath}`, 'utf8');
-
-  // remove import/export/type definition codes
-  const importRegex = /^\s*(?:import|export)\s+.+;\s*/gm;
-  const typeRegex = /^\s*type\s+\w+\s*=\s*(?:(\|?\s*\w+\s*)+|{\s*.*\s*})\s*;/gm;
-  const code = contents.replace(importRegex, '').replace(typeRegex, '');
+  const code = await fetchCode(year, day, part);
 
   const label = (
     <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4 group">
       <Image
         aria-hidden
-        src="/puzzle-piece.svg"
+        src={PuzzlePieceIcon}
         alt="Puzzle icon"
         width={48}
         height={48}
@@ -37,7 +36,7 @@ export default async function SolutionDetails({
         <span className="text-sm text-gray-400 uppercase">View Code</span>
           <Image
             aria-hidden
-            src="/code-simple.svg"
+            src={CodeSimple}
             alt="Code icon"
             width={20}
             height={20}

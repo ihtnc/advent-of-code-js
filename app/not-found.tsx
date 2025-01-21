@@ -1,4 +1,5 @@
 import Image from "next/image";
+import NotFoundIcon from "@public/images/404.svg";
 
 export default function NotFound() {
   return (
@@ -6,7 +7,7 @@ export default function NotFound() {
       <h1 className="flex place-items-center text-xl sm:text-2xl gap-2">
         <Image
           aria-hidden
-          src="/404.svg"
+          src={NotFoundIcon}
           alt="Not found icon"
           width={32}
           height={32}

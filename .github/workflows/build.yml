@@ -23,10 +23,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Set Base Path
-        run: |
-          echo "NEXT_PUBLIC_BASE_PATH=${{ vars.BASE_URL }}" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_BASE_URL=${{ vars.NEXT_PUBLIC_BASE_URL }}" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node

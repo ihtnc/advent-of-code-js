@@ -1,12 +1,21 @@
-import { fetchText } from './index';
+import path from 'path';
+import { fetchExternalText } from './index';
 
 export function getAdventOfCodeUrl(year?: number, day?: number): string {
-  let url = 'https://adventofcode.com';
+  const baseUrl = new URL('https://adventofcode.com');
+  const paths = [];
+
   if (year) {
-    url += `/${year}`;
-    url += `${day ? `/day/${day}` : ''}`;
+    paths.push(`${year}`);
+
+    if (day) {
+      paths.push('day');
+      paths.push(`${day}`);
+    }
   }
-  return url;
+
+  baseUrl.pathname = path.join(...paths);
+  return baseUrl.toString();
 };
 
 export function getAdventOfCodeInputUrl(year: number, day: number): string {
@@ -18,8 +27,8 @@ export interface IInputParser<T> {
   (input: string): Promise<T>;
 };
 
-export async function getInput<T>(session: string, year: number, day: number, useLocal: boolean = false, parser?: IInputParser<T>): Promise<T> {
-  const input = useLocal ? await fetchLocalInput(session, year, day): await fetchChallengeInput(session, year, day);
+export async function getInput<T>(session: string, year: number, day: number, parser?: IInputParser<T>): Promise<T> {
+  const input = await fetchChallengeInput(session, year, day);
   return input && parser ? await parser(input) : (input as unknown as T);
 }
 
@@ -33,24 +42,23 @@ const getAdventOfCodeHeaders = (session: string) => ({
 });
 
 const getAdventOfCodeNextConfig = (session: string) => {
-    const today = new Date();
-    const key = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-    return {
-      tags: [session, key],
+  const today = new Date();
+  const key = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+  return {
+    tags: [session, key],
   };
 };
 
 const fetchChallengeInput: IFetchInput = async (session: string, year: number, day: number) => {
   const url = getAdventOfCodeInputUrl(year, day);
-  const response = await fetchText(url, {
+  const response = await fetchExternalText(url, {
     headers: getAdventOfCodeHeaders(session),
     next: getAdventOfCodeNextConfig(session),
   });
   return response;
 }
 
-const fetchLocalInput: IFetchInput = async () => {
-  //const response = await fs.readFile(`./(year)/${year}/${day}/input.txt`, 'utf-8');
-  const response = '';
-  return response;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export async  function getLocalInput<T>(session: string, year: number, day: number, parser?: IInputParser<T>): Promise<T> {
+  return Promise.resolve('' as unknown as T);
 }

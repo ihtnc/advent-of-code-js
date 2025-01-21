@@ -9,7 +9,7 @@ const solution = async (data: InputData): Promise<number> => {
 
     let result = 0;
     for(const key in counted1) {
-      const value = parseInt(key, 10);
+      const value = Number(key);
       if (counted2[value]) {
         result += value * counted2[key] * counted1[key];
       }

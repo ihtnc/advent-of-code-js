@@ -1,6 +1,8 @@
 'use client';
 
 import Image from "next/image";
+import NotFoundIcon from "@public/images/not-found.svg";
+import RotateRightIcon from "@public/images/rotate-right.svg";
 
 export default function Error({
   error,
@@ -14,7 +16,7 @@ export default function Error({
       <h1 className="flex text-xl sm:text-2xl gap-2">
         <Image
           aria-hidden
-          src="/not-found.svg"
+          src={NotFoundIcon}
           alt="Error icon"
           width={32}
           height={32}
@@ -28,7 +30,7 @@ export default function Error({
       >
         <Image
             aria-hidden
-            src="/rotate-right.svg"
+            src={RotateRightIcon}
             alt="User icon"
             width={24}
             height={24}

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAdventOfCodeUrl, getAdventOfCodeInputUrl } from "@/actions/advent-of-code";
+import ChallengeIcon from "@public/images/challenge.svg";
+import DocumentIcon from "@public/images/document.svg";
 
 export default function ProblemDetails({
   year,
@@ -18,7 +20,7 @@ export default function ProblemDetails({
       <h1 className="flex self-start place-items-center text-xl sm:text-2xl gap-4">
         <Image
           aria-hidden
-          src="/challenge.svg"
+          src={ChallengeIcon}
           alt="Challenge icon"
           width={48}
           height={48}
@@ -58,7 +60,7 @@ export default function ProblemDetails({
           >
             <Image
               aria-hidden
-              src="/document.svg"
+              src={DocumentIcon}
               alt="Document icon"
               width={20}
               height={20}

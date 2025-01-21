@@ -1,5 +1,5 @@
 import type { InputData } from "./input-parser";
-import { checkSafety } from "./part1";
+import { checkSafety } from "./solution-part1";
 
 const solution = async (data: InputData): Promise<number> => {
   const promise = new Promise<number>(async (resolve) => {

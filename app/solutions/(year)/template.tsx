@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import User from "@/components/user";
+import LocationArrowIcon from "@public/images/location-arrow.svg";
 
 export default function YearTemplate({
   children,
@@ -17,7 +18,7 @@ export default function YearTemplate({
       >
         <Image
           aria-hidden
-          src="/location-arrow.svg"
+          src={LocationArrowIcon}
           alt="Back icon"
           className="-rotate-[135deg] dark:hue-rotate-60 group-hover:scale-125"
           width={16}

@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preexport": "rimraf app/api/code/contents",
+    "export": "copyfiles --verbose --up 3 \"app/solutions/(year)/*/*/solution-part*.tsx\" app/api/code/contents",
+    "postexport": "renamer --path-element ext \"app/api/code/contents/**\" --find .tsx --replace .txt --force",
     "dev": "next dev --turbopack",
+    "prebuild": "npm run export",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -19,9 +23,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "copyfiles": "^2.4.1",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
     "postcss": "^8",
+    "renamer": "^5.0.2",
+    "rimraf": "^6.0.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

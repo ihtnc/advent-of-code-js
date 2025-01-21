@@ -3,7 +3,7 @@ export type Solution = {
   problems: Array<Problem>,
 };
 
-type Problem = {
+export type Problem = {
   day: number,
   stars: number,
 }

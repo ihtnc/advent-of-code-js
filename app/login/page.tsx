@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useActionState } from "react";
 import { login } from "@/actions/auth";
 import Spinner from "@/components/spinner";
+import SignInAltIcon from "@public/images/sign-in-alt.svg";
 
 export default function Login() {
   const [state, action, pending] = useActionState(login, undefined);
@@ -22,7 +23,7 @@ export default function Login() {
           ? <Spinner width={24} height={24} />
           : <Image
             aria-hidden
-            src="/sign-in-alt.svg"
+            src={SignInAltIcon}
             alt="Login icon"
             width={24}
             height={24}

@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getSession } from '@/actions/session';
+import UserIcon from '@public/images/user.svg';
+import SignOutAltIcon from '@public/images/sign-out-alt.svg';
 
 export default async function User({
   className,
@@ -16,7 +18,7 @@ export default async function User({
         <span className="flex gap-2 items-center" title={trimmed}>
           <Image
             aria-hidden
-            src="/user.svg"
+            src={UserIcon}
             alt="User icon"
             width={16}
             height={16}
@@ -30,7 +32,7 @@ export default async function User({
         >
           <Image
             aria-hidden
-            src="/sign-out-alt.svg"
+            src={SignOutAltIcon}
             alt="Logout icon"
             width={16}
             height={16}

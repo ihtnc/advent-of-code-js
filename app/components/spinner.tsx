@@ -1,4 +1,5 @@
 import Image from "next/image";
+import LoadingIcon from "@public/images/loading.svg";
 
 export default function Spinner({
   width = 100,
@@ -10,7 +11,7 @@ export default function Spinner({
   return (
     <Image
       aria-hidden
-      src="/loading.svg"
+      src={LoadingIcon}
       alt="Loading icon"
       className="animate-spin dark:hue-rotate-60"
       width={width} height={height}

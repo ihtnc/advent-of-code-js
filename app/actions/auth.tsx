@@ -1,14 +1,13 @@
 import { redirect } from 'next/navigation';
-import { getApiBaseUrl, fetchJson } from "@/actions";
+import { fetchJson } from "@/actions";
 import type { SessionData } from "@/api/session/types";
 import type { Response } from "@/api/types";
 import { FormState } from "./types";
 
 export async function login(state: FormState, formData: FormData): Promise<FormState | undefined> {
-  const baseUrl = getApiBaseUrl();
   const request: SessionData = { session: formData.get('session') as string };
 
-  const response = await fetchJson<Response>(`${baseUrl}/session`, {
+  const response = await fetchJson<Response>('session', null, {
     method: 'POST',
     body: JSON.stringify(request),
   });

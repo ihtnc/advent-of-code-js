@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+[![build](https://img.shields.io/github/actions/workflow/status/ihtnc/advent-of-code-js/build.yml?label=build&logo=github+actions&logoColor=white)](https://github.com/ihtnc/advent-of-code-js/actions/workflows/build.yml)
+[![deploy](https://deploy-badge.vercel.app/vercel/advent-of-code-js?name=website)](https://advent-of-code-js.vercel.app/)
 
-## Getting Started
+# Advent of Code JS
+An app with solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 
-First, run the development server:
+## Folder structure
+Solutions to the Advent of Code challenges are located in the folder `/app/solutions/(year)/` with the following structure:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```plaintext
+./app/solutions/(year)
+├── /2024                        # Each year will have its own folder
+    ├── /1                       # Each challenge day will have its own folder
+        ├── page.tsx             # (Required) The page component
+        ├── solution-part1.tsx   # See solution code files section
+        ├── solution-part2.tsx   # See solution code files section
+        ├── other files          # As required
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Solution code files
+The solution code files are written in TypeScript and are located in the same folder as the page component. They are important as they are used in build scripts to generate the code snippets used for displaying code on the website.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+These code snippets are also used to derive the list of solutions displayed on the main page.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Naming convention
+The solution code file should follow the format:
 
-## Learn More
+```
+solution-part#.tsx
+```
 
-To learn more about Next.js, take a look at the following resources:
+where `#` is the part number which the solution code file is for.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Content
+Solution code files are TypeScript files that export a function that returns the answer to the challenge. It can then be imported into the page component and subsequently called to retrieve the answer.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+It is recommended for the file to only include the main logic for solving the challenge.
 
-## Deploy on Vercel
+If there are any additional code needed by the solution code file, they can just be placed in a separate file and then imported.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Build script
+There are prebuild scripts in the project that copies these specific solution code files to the `/api/code/contents` folder. This is what allows the `SolutionDetails` component to display the code. There is no need to manually copy the files over.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After the build script runs, the code snippets will be available in the `/api/code/contents` folder.
+
+```plaintext
+./app
+├── /solutions/(year)
+│   ├── /2024                                # Each folder will be copied
+│       ├── /1                               # Each folder will be copied
+│           ├── solution-part1.tsx           # Copied and renamed
+│           ├── solution-part2.tsx           # Copied and renamed
+│           ├── other files                  # Not copied
+├── /api
+    ├── /code
+        ├── /contents
+            ├── /2024
+                ├── /1
+                    ├── solution-part1.txt
+                    ├── solution-part2.txt
+```
+
+### SolutionDetails component
+The [`SolutionDetails`](app/components/solution-details.tsx#L8) component is used to display the answer to a specific challenge as well as display a code snippet that was used to derive the answer. It looks for the code snippets for a particular challenge in the `/api/code/contents` folder.
+
+> **NOTE:** When displaying the code, `import`, `export`, and `type` definition statements are automatically stripped off.
+
+> **IMPORTANT:** The solution code files should not contain any sensitive information, as they will be publicly available on the website.
+
+### Solutions list
+The list of solutions displayed on the main page is derived from the generated code snippets. The list is generated by reading the contents of the `/api/code/contents` folder.
+
+Each folder represents a year, each subfolder represents a challenge day, and each code snippet represents a star which serves as an indicator of the number of parts completed for that challenge.
+
+## Debugging
+1. Enable server debugging by uncommenting the`NODE_OPTIONS='--inspect'` line on the [`.env.development`](.env.development) file.
+2. Start the next application with `npm run dev`.
+3. Open the Chrome DevTools and go to the `chrome://inspect` page.
+4. Click on the `inspect` link to open the DevTools for the server.
+   * If the link is not available, click on the `Configure...` button and add the server address (i.e.: `localhost:3000`).
+5. Add breakpoints to the server code and start debugging.
+
+## Advent of Code session
+
+The application requires a session cookie to be able to fetch the challenge data from the Advent of Code website.
+
+To get the session cookie:
+1. Open the [Advent of Code](https://adventofcode.com/) website.
+2. Log in to your account.
+3. Open the browser's developer tools.
+4. Go to the `Application` tab and expand the `Cookies` section.
+5. Copy the value of the `session` cookie.

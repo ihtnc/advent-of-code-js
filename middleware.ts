@@ -1,21 +1,27 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
-
-const publicRoutes = ['/login']
+import { NextRequest, NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 export default async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
-  const isPublic = publicRoutes.includes(path)
 
-  const session = (await cookies()).get('session')?.value
+  const isPublicPath = path.startsWith('/login')
+  || path.startsWith('/logout')
+  || path.startsWith('/error')
+  || path.startsWith('/loading')
+  || path.startsWith('/not-found')
+  || path.startsWith('/images')
+  || path.startsWith('/_next/static');
 
-  if (!isPublic && !session) {
-    return NextResponse.redirect(new URL('/login', request.nextUrl))
+  const session = (await cookies()).get('session')?.value;
+  const hasSession = session ? session.length > 0 : false;
+
+  if (isPublicPath || hasSession) {
+    return NextResponse.next();
   }
 
-  return NextResponse.next()
+  return NextResponse.redirect(new URL('/login', request.nextUrl));
 }
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
-}
+  matcher: ['/((?!api|_next/static|_next/image).*)'],
+};

@@ -1,8 +1,9 @@
 import Image from "next/image";
-import User from "./components/user";
+import User from "@/components/user";
 import ExpandableContainer from "@/components/expandable-container";
 import SolutionLink from "@/components/solution-link";
 import { getSolutions } from "@/actions/solution";
+import ChallengeIcon from "@public/images/challenge.svg";
 
 export default async function Home() {
   const solutions = await getSolutions();
@@ -25,7 +26,7 @@ export default async function Home() {
                 <span className="flex gap-2 group">
                   <Image
                     aria-hidden
-                    src="/challenge.svg"
+                    src={ChallengeIcon}
                     alt="Challenge icon"
                     width={24}
                     height={24}
