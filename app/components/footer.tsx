@@ -12,7 +12,7 @@ export default function Footer({
   return (
     <footer className={`${["flex gap-6 flex-wrap items-center justify-center pt-12", className].join(' ')}`}>
       <Link
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+        className="flex items-center gap-2 group"
         href="https://github.com/ihtnc"
         target="_blank"
         rel="noopener noreferrer"
@@ -23,13 +23,13 @@ export default function Footer({
           alt="Github logo"
           width={16}
           height={16}
-          className="dark:hue-rotate-60"
+          className="dark:hue-rotate-60 group-hover:scale-125"
         />
         Repository
       </Link>
 
       <Link
-        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+        className="flex items-center gap-2 group"
         href={url}
         target="_blank"
         rel="noopener noreferrer"
@@ -40,7 +40,7 @@ export default function Footer({
           alt="Link icon"
           width={16}
           height={16}
-          className="dark:hue-rotate-60"
+          className="dark:hue-rotate-60 group-hover:scale-125"
         />
         Advent of Code
       </Link>

@@ -20,7 +20,7 @@ export default async function SolutionDetails({
   const code = contents.replace(importRegex, '').replace(typeRegex, '');
 
   const label = (
-    <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4">
+    <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4 group">
       <Image
         aria-hidden
         src="/puzzle-piece.svg"
@@ -33,7 +33,7 @@ export default async function SolutionDetails({
         <span className="text-sm text-gray-400 uppercase">Part {part} Answer</span>
         {answer}
       </span>
-      <span className="flex flex-col group">
+      <span className="flex flex-col">
         <span className="text-sm text-gray-400 uppercase">View Code</span>
           <Image
             aria-hidden
@@ -48,7 +48,7 @@ export default async function SolutionDetails({
   );
 
   return (
-    <span className="gap-6">
+    <span className="gap-6 w-fit">
       <ExpandableContainer label={label} labelClassName="cursor-pointer" childrenClassName="place-content-center">
         <TypescriptCode code={code} className="text-sm" />
       </ExpandableContainer>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import User from "./components/user";
 import ExpandableContainer from "@/components/expandable-container";
 import SolutionLink from "@/components/solution-link";
@@ -17,16 +18,27 @@ export default async function Home() {
 
       <ul className="text-md list-inside list-none sm:text-lg text-center sm:text-left">
         {solutions.map(({ year, problems }) => (
-          <li key={year} className="mb-2">
+          <li key={year} className="mb-2 w-fit">
             <ExpandableContainer
-              labelClassName="cursor-pointer text-xl hover:underline hover:underline-offset-4 text-center sm:text-2xl sm:text-left max-w-fit"
-              label={`${year}`}
+              labelClassName="cursor-pointer text-xl text-center sm:text-2xl sm:text-left max-w-fit"
+              label={(
+                <span className="flex gap-2 group">
+                  <Image
+                    aria-hidden
+                    src="/challenge.svg"
+                    alt="Challenge icon"
+                    width={24}
+                    height={24}
+                    className="dark:hue-rotate-60 group-hover:scale-125"
+                  />{year}
+                </span>
+              )}
               expanded={year === latestYear}
             >
 
               <ul className="place-items-center sm:place-items-start">
                 {problems.map((problem) => (
-                  <li key={problem.day}>
+                  <li key={problem.day} className="pl-8">
                     <SolutionLink day={problem.day} year={year} stars={problem.stars} />
                   </li>
                 ))}
