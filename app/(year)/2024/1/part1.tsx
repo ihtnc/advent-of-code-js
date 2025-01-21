@@ -1,7 +1,7 @@
-import type { IData } from "./types";
+import type { InputData } from "./input-parser";
 import { sort } from "@/utilities";
 
-async function Solution(data: IData): Promise<number> {
+const solution = async (data: InputData): Promise<number> => {
   const promise = new Promise<number>(async (resolve) => {
     const { data1, data2 } = data;
     const task1 = sort(data1);
@@ -19,4 +19,4 @@ async function Solution(data: IData): Promise<number> {
   return promise;
 };
 
-export default Solution;
+export { solution };

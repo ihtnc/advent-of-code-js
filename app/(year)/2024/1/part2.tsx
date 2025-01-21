@@ -1,7 +1,6 @@
-import type { IData } from "./types";
-import { countOccurence } from "./utilities";
+import type { InputData } from "./input-parser";
 
-async function Solution(data: IData): Promise<number> {
+const solution = async (data: InputData): Promise<number> => {
   const promise = new Promise<number>(async (resolve) => {
     const { data1, data2 } = data;
     const task1 = countOccurence(data1);
@@ -21,4 +20,26 @@ async function Solution(data: IData): Promise<number> {
   return promise;
 };
 
-export default Solution;
+type OccurenceData = {
+  [key: number]: number;
+};
+
+const countOccurence = async (data: Array<number>): Promise<OccurenceData> => {
+  const promise = new Promise<OccurenceData>((resolve) => {
+    const counted: OccurenceData = {};
+
+    data.forEach((value) => {
+      if (counted[value]) {
+        counted[value] += 1;
+      } else {
+        counted[value] = 1;
+      }
+    });
+
+    resolve(counted);
+  });
+
+  return promise;
+};
+
+export { solution };

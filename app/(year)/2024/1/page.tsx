@@ -2,17 +2,17 @@ import { getInput } from "@/actions/advent-of-code";
 import { getSession } from "@/actions/session";
 import AdventDetails from "@/components/advent-details";
 import SolutionDetails from "@/components/solution-details";
-import { inputParser } from "./utilities";
-import Part1Solver from "./part1";
-import Part2Solver from "./part2";
+import { inputParser } from "./input-parser";
+import { solution as solution1 } from "./part1";
+import { solution as solution2 } from "./part2";
 
 export default async function Page() {
   const year = 2024;
   const day = 1;
   const session = await getSession();
   const input = await getInput(session, year, day, false, inputParser);
-  const task1 = Part1Solver(input);
-  const task2 = Part2Solver(input);
+  const task1 = solution1(input);
+  const task2 = solution2(input);
   const [part1, part2] = await Promise.all([task1, task2]);
 
   return (

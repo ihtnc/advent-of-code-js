@@ -14,8 +14,10 @@ export default async function SolutionDetails({
 }>) {
   const contents = await fs.readFile(`${process.cwd()}/${codePath}`, 'utf8');
 
-  // remove import/export code
-  const code = contents.replace(/^\s*(?:import|export)\s+(?:[^;]+);\s*/gm, '');
+  // remove import/export/type definition codes
+  const importRegex = /^\s*(?:import|export)\s+.+;\s*/gm;
+  const typeRegex = /^\s*type\s+\w+\s*=\s*(?:(\|?\s*\w+\s*)+|{\s*.*\s*})\s*;/gm;
+  const code = contents.replace(importRegex, '').replace(typeRegex, '');
 
   const label = (
     <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4">
