@@ -7,10 +7,13 @@ export async function GET() {
     success: true,
     data: [{
       year: 2024,
-      days: [1, 2],
+      problems: [
+        { day: 1, stars: 2 },
+        { day: 2, stars: 1 },
+      ],
     }, {
       year: 2023,
-      days: [1, 2, 3],
+      problems: [],
     }],
  };
 

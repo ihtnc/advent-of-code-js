@@ -8,7 +8,7 @@ export default function YearTemplate({
   children: React.ReactNode,
 }>) {
   return (
-    <section className="flex flex-col gap-6 w-full text-center content-center mb-12">
+    <section className="flex flex-col gap-6 w-full text-center content-center">
       <User className="pb-6" />
 
       <Link
@@ -19,7 +19,7 @@ export default function YearTemplate({
           aria-hidden
           src="/location-arrow.svg"
           alt="Back icon"
-          className="-rotate-[135deg] dark:invert group-hover:scale-125"
+          className="-rotate-[135deg] dark:hue-rotate-60 group-hover:scale-125"
           width={16}
           height={16}
         />

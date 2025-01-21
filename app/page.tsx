@@ -1,6 +1,6 @@
 import User from "./components/user";
 import ExpandableContainer from "@/components/expandable-container";
-import ChallengeLink from "@/components/challenge-link";
+import SolutionLink from "@/components/solution-link";
 import { getSolutions } from "@/actions/solution";
 
 export default async function Home() {
@@ -16,18 +16,18 @@ export default async function Home() {
       </h1>
 
       <ul className="text-md list-inside list-none sm:text-lg text-center sm:text-left">
-        {solutions.map(({ year, days }) => (
+        {solutions.map(({ year, problems }) => (
           <li key={year} className="mb-2">
             <ExpandableContainer
-              className="cursor-pointer text-xl hover:underline hover:underline-offset-4 text-center sm:text-2xl sm:text-left max-w-fit"
+              labelClassName="cursor-pointer text-xl hover:underline hover:underline-offset-4 text-center sm:text-2xl sm:text-left max-w-fit"
               label={`${year}`}
               expanded={year === latestYear}
             >
 
               <ul className="place-items-center sm:place-items-start">
-                {days.map((day) => (
-                  <li key={day}>
-                    <ChallengeLink day={day} year={year} />
+                {problems.map((problem) => (
+                  <li key={problem.day}>
+                    <SolutionLink day={problem.day} year={year} stars={problem.stars} />
                   </li>
                 ))}
               </ul>

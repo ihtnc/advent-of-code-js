@@ -22,7 +22,7 @@ export default function ProblemDetails({
           alt="Challenge icon"
           width={48}
           height={48}
-          className="dark:invert"
+          className="dark:hue-rotate-60"
         />
         <span className="flex flex-col">
           <span className="text-sm text-gray-400 uppercase">Challenge</span>
@@ -62,7 +62,7 @@ export default function ProblemDetails({
               alt="Document icon"
               width={20}
               height={20}
-              className="dark:invert group-hover:scale-125 ml-auto mr-auto"
+              className="dark:hue-rotate-60 group-hover:scale-125 ml-auto mr-auto"
             />
           </Link>
         </span>

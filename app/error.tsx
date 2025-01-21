@@ -18,7 +18,7 @@ export default function Error({
           alt="Error icon"
           width={32}
           height={32}
-          className="dark:invert"
+          className="dark:hue-rotate-60"
         />
         Error
       </h1>
@@ -32,7 +32,7 @@ export default function Error({
             alt="User icon"
             width={24}
             height={24}
-            className="dark:invert group-hover:scale-125"
+            className="dark:hue-rotate-60 group-hover:scale-125"
         />
         Retry
       </button>

@@ -25,7 +25,7 @@ export default async function SolutionDetails({
         alt="Puzzle icon"
         width={48}
         height={48}
-        className="dark:invert"
+        className="dark:hue-rotate-60"
       />
       <span className="flex flex-col">
         <span className="text-sm text-gray-400 uppercase">Part {part} Answer</span>
@@ -39,7 +39,7 @@ export default async function SolutionDetails({
             alt="Code icon"
             width={20}
             height={20}
-            className="dark:invert group-hover:scale-125 ml-auto mr-auto h-7 sm:h-8"
+            className="dark:hue-rotate-60 group-hover:scale-125 ml-auto mr-auto h-7 sm:h-8"
           />
         </span>
     </span>
@@ -47,8 +47,8 @@ export default async function SolutionDetails({
 
   return (
     <span className="gap-6">
-      <ExpandableContainer label={label} className="cursor-pointer">
-        <TypescriptCode code={code} className="text-sm ml-6" />
+      <ExpandableContainer label={label} labelClassName="cursor-pointer" childrenClassName="place-content-center">
+        <TypescriptCode code={code} className="text-sm" />
       </ExpandableContainer>
     </span>
   );

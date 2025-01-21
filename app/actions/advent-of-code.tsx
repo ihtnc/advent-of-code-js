@@ -14,7 +14,6 @@ export function getAdventOfCodeInputUrl(year: number, day: number): string {
   return `${url}/input`;
 };
 
-
 export interface IInputParser<T> {
   (input: string): Promise<T>;
 };

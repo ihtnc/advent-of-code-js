@@ -20,7 +20,7 @@ export default async function User({
             alt="User icon"
             width={16}
             height={16}
-            className="dark:invert"
+            className="dark:hue-rotate-60"
           />
           Logged in
         </span>
@@ -34,7 +34,7 @@ export default async function User({
             alt="Logout icon"
             width={16}
             height={16}
-            className="dark:invert group-hover:scale-125"
+            className="dark:hue-rotate-60 group-hover:scale-125"
           />
           Sign out
         </Link>

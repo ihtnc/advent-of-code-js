@@ -19,7 +19,7 @@ export default function CodeSnippet ({
   const highlighted = hljs.highlight(code, { language });
 
   return (
-    <div className={`${[className, "text-left pl-6 pt-6 pb-6 overflow-visible"].join(' ')}`}>
+    <div className={`${["text-left pt-6 pb-6 overflow-visible", className].join(' ')}`}>
       <pre>
         <code dangerouslySetInnerHTML={{ __html: highlighted.value }}></code>
       </pre>

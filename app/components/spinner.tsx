@@ -12,7 +12,7 @@ export default function Spinner({
       aria-hidden
       src="/loading.svg"
       alt="Loading icon"
-      className="animate-spin dark:invert"
+      className="animate-spin dark:hue-rotate-60"
       width={width} height={height}
     />
   );

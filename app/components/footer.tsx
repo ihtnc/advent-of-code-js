@@ -10,7 +10,7 @@ export default function Footer({
   const url = getAdventOfCodeUrl();
 
   return (
-    <footer className={`${[className, "flex gap-6 flex-wrap items-center justify-center"].join(' ')}`}>
+    <footer className={`${["flex gap-6 flex-wrap items-center justify-center pt-12", className].join(' ')}`}>
       <Link
         className="flex items-center gap-2 hover:underline hover:underline-offset-4"
         href="https://github.com/ihtnc"
@@ -23,7 +23,7 @@ export default function Footer({
           alt="Github logo"
           width={16}
           height={16}
-          className="dark:invert"
+          className="dark:hue-rotate-60"
         />
         Repository
       </Link>
@@ -40,7 +40,7 @@ export default function Footer({
           alt="Link icon"
           width={16}
           height={16}
-          className="dark:invert"
+          className="dark:hue-rotate-60"
         />
         Advent of Code
       </Link>

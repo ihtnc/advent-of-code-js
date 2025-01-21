@@ -1,4 +1,9 @@
 export type Solution = {
   year: number,
-  days: Array<number>,
+  problems: Array<Problem>,
 };
+
+type Problem = {
+  day: number,
+  stars: number,
+}
