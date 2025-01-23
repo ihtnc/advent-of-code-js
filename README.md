@@ -63,7 +63,7 @@ After the build script runs, the code snippets will be available in the `/api/co
 ### SolutionDetails component
 The [`SolutionDetails`](app/components/solution-details.tsx#L8) component is used to display the answer to a specific challenge as well as display a code snippet that was used to derive the answer. It looks for the code snippets for a particular challenge in the `/api/code/contents` folder.
 
-> **NOTE:** When displaying the code, `import`, `export`, and `type` definition statements are automatically stripped off.
+> **NOTE:** When displaying the code, `import`, `export`, and type definition statements (`type`, `interface`, `enum`) are automatically stripped off.
 
 > **IMPORTANT:** The solution code files should not contain any sensitive information, as they will be publicly available on the website.
 

@@ -1,16 +1,16 @@
 import type { IInputParser } from "@/actions/advent-of-code";
 
-export interface InputData {
-  data1: Array<number>;
-  data2: Array<number>;
-}
+export type InputData = {
+  data1: Array<number>,
+  data2: Array<number>,
+};
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
-  const lines = input.split('\n');
-  const data1: Array<number> = [];
-  const data2: Array<number> = [];
-
   const promise = new Promise<InputData>((resolve) => {
+    const lines = input.split('\n');
+    const data1: Array<number> = [];
+    const data2: Array<number> = [];
+
     lines.forEach((line) => {
       if (!line) { return; }
 

@@ -1,13 +1,12 @@
 import type { IInputParser } from "@/actions/advent-of-code";
 
-export interface InputData {
-  reports: Array<Array<number>>;
-}
+export type InputData ={
+  reports: Array<Array<number>>,
+};
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
-  const lines = input.split('\n');
-
   const promise = new Promise<InputData>((resolve) => {
+    const lines = input.split('\n');
     const reports: Array<Array<number>> = [];
 
     lines.forEach((line) => {

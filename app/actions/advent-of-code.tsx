@@ -32,10 +32,6 @@ export async function getInput<T>(session: string, year: number, day: number, pa
   return input && parser ? await parser(input) : (input as unknown as T);
 }
 
-interface IFetchInput {
-  (session: string, year: number, day: number): Promise<string>;
-}
-
 const getAdventOfCodeHeaders = (session: string) => ({
   cookie: `session=${session}`,
   'User-Agent': 'github.com/ihtnc/advent-of-code-js by ihopethisnamecounts@yahoo.com',
@@ -49,16 +45,11 @@ const getAdventOfCodeNextConfig = (session: string) => {
   };
 };
 
-const fetchChallengeInput: IFetchInput = async (session: string, year: number, day: number) => {
+const fetchChallengeInput = async (session: string, year: number, day: number) => {
   const url = getAdventOfCodeInputUrl(year, day);
   const response = await fetchExternalText(url, {
     headers: getAdventOfCodeHeaders(session),
     next: getAdventOfCodeNextConfig(session),
   });
   return response;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export async  function getLocalInput<T>(session: string, year: number, day: number, parser?: IInputParser<T>): Promise<T> {
-  return Promise.resolve('' as unknown as T);
 }

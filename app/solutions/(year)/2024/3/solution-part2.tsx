@@ -1,6 +1,8 @@
 import type { Instructions, InputData } from "./types";
 
-const inputParser = async (input: string): Promise<InputData> => {
+type ParserFn = (input: string) => Promise<InputData>;
+
+const inputParser: ParserFn = async (input) => {
   const promise = new Promise<InputData>((resolve) => {
     const instructions: Array<Instructions> = [];
 
@@ -32,11 +34,13 @@ const inputParser = async (input: string): Promise<InputData> => {
   return promise;
 };
 
-const solution = async (input: string): Promise<number> => {
+type Fn = (input: string) => Promise<number>;
+
+const solution: Fn = async (input) => {
   const promise = new Promise<number>(async (resolve) => {
-    const data = await inputParser(input);
+    const { instructions } = await inputParser(input);
     let sum = 0;
-    data.instructions.forEach(instruction => {
+    instructions.forEach(instruction => {
       sum += instruction.data1 * instruction.data2;
     });
     resolve(sum);

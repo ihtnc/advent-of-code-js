@@ -1,8 +1,9 @@
 import type { InputData } from "./input-parser";
 
-const solution = async (data: InputData): Promise<number> => {
+type Fn = ({ data1, data2 }: InputData) => Promise<number>;
+
+const solution: Fn = async ({ data1, data2 }) => {
   const promise = new Promise<number>(async (resolve) => {
-    const { data1, data2 } = data;
     const task1 = countOccurence(data1);
     const task2 = countOccurence(data2);
     const [counted1, counted2] = await Promise.all([task1, task2]);
@@ -21,10 +22,12 @@ const solution = async (data: InputData): Promise<number> => {
 };
 
 type OccurenceData = {
-  [key: number]: number;
+  [key: number]: number,
 };
 
-const countOccurence = async (data: Array<number>): Promise<OccurenceData> => {
+type CountFn = (data: Array<number>) => Promise<OccurenceData>;
+
+const countOccurence: CountFn = async (data) => {
   const promise = new Promise<OccurenceData>((resolve) => {
     const counted: OccurenceData = {};
 

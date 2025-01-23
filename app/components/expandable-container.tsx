@@ -19,18 +19,18 @@ export default function ExpandableContainer({
   const [isExpanded, setIsExpanded] = useState(expanded);
 
   return (
-    <>
+    <span className="flex flex-col">
       <input id={id} className="peer/expand absolute scale-0" type="checkbox"
         checked={isExpanded}
         onChange={() => setIsExpanded(!isExpanded)}
       />
-      <label htmlFor={id} className={labelClassName}>
+      <label htmlFor={id} className={`${["w-fit", labelClassName].join(' ')}`}>
         {label}
       </label>
 
       <div className={`${["hidden opacity-0 transition-all duration-300 peer-checked/expand:flex peer-checked/expand:visible peer-checked/expand:opacity-100", childrenClassName].join(' ')}`}>
         {children}
       </div>
-    </>
+    </span>
   );
 };

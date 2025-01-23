@@ -1,8 +1,9 @@
 import type { InputData } from "./input-parser";
 
-const solution = async (data: InputData): Promise<number> => {
+type Fn = ({ reports }: InputData) => Promise<number>;
+
+const solution: Fn = async ({ reports }) => {
   const promise = new Promise<number>(async (resolve) => {
-    const { reports } = data;
     let count = 0;
 
     for (let i = 0; i < reports.length; i++) {
@@ -17,7 +18,9 @@ const solution = async (data: InputData): Promise<number> => {
   return promise;
 };
 
-const checkSafety = async (report: Array<number>): Promise<boolean> => {
+type CheckFn = (report: Array<number>) => Promise<boolean>;
+
+const checkSafety: CheckFn = async (report) => {
   const promise = new Promise<boolean>(async (resolve, reject) => {
     const first = report[0];
     const second = report[1];

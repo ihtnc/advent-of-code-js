@@ -27,9 +27,16 @@ export async function GET(request: NextRequest) {
   const contents = await fs.readFile(codePath, 'utf8');
 
   // remove import/export/type definition codes
-  const importRegex = /^\s*(?:import|export)\s+.+;\s*/gm;
-  const typeRegex = /^\s*type\s+\w+\s*=\s*(?:(\|?\s*\w+\s*)+|{\s*.*\s*})\s*;/gm;
-  const cleaned = contents.replace(importRegex, '').replace(typeRegex, '');
+  const importRegex = /^import[\w{}\s,]+from[^;]+;\s*/gm
+  const exportRegex = /^export(?:[^;{}]+|[^{]+{[^}]+}\s*);\s*/gm;
+  const typeRegex = /^type[^=]+=[^;]+;\s*/gm;
+  const enumRegex = /^enum[^;]+;\s*/gm;
+  const interfaceRegex = /^interface[^;]+;\s*/gm;
+  const cleaned = contents.replace(importRegex, '')
+    .replace(exportRegex, '')
+    .replace(typeRegex, '')
+    .replace(interfaceRegex, '')
+    .replace(enumRegex, '');
   responseBody.success = true;
   responseBody.data = cleaned;
 

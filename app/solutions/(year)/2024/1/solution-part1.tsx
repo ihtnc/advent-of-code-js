@@ -1,9 +1,10 @@
 import type { InputData } from "./input-parser";
-import { sort } from "@/utilities";
+import { sort } from "@/solutions/utilities";
 
-const solution = async (data: InputData): Promise<number> => {
+type Fn =({ data1, data2 }: InputData) => Promise<number>;
+
+const solution: Fn = async ({ data1, data2 }) => {
   const promise = new Promise<number>(async (resolve) => {
-    const { data1, data2 } = data;
     const task1 = sort(data1);
     const task2 = sort(data2);
     const [sorted1, sorted2] = await Promise.all([task1, task2]);
