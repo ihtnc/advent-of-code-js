@@ -73,12 +73,12 @@ The list of solutions displayed on the main page is derived from the generated c
 Each folder represents a year, each subfolder represents a challenge day, and each code snippet represents a star which serves as an indicator of the number of parts completed for that challenge.
 
 ## Debugging
-1. Enable server debugging by uncommenting the`NODE_OPTIONS='--inspect'` line on the [`.env.development`](.env.development) file.
-2. Start the next application with `npm run dev`.
-3. Open the Chrome DevTools and go to the `chrome://inspect` page.
-4. Click on the `inspect` link to open the DevTools for the server.
-   * If the link is not available, click on the `Configure...` button and add the server address (i.e.: `localhost:3000`).
-5. Add breakpoints to the server code and start debugging.
+1. Start the application with server debugging enabled by running `npm run debug`.
+2. Open the Chrome DevTools and go to the `chrome://inspect` page.
+3. Click on the `inspect` link to open the DevTools for the server.
+4. Add breakpoints to the server code and start debugging.
+
+If the `inspect` link is not available, click the `Configure...` button on the `chrome://inspect` page then add the server address. The details can be found on the console output when the server starts. Look for the text `"the Next.js router server should be inspected at 9230"`.
 
 ## Advent of Code session
 
