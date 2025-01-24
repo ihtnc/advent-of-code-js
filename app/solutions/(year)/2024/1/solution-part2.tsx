@@ -31,13 +31,13 @@ const countOccurence: CountFn = async (data) => {
   const promise = new Promise<OccurenceData>((resolve) => {
     const counted: OccurenceData = {};
 
-    data.forEach((value) => {
+    for (const value of data) {
       if (counted[value]) {
         counted[value] += 1;
       } else {
         counted[value] = 1;
       }
-    });
+    }
 
     resolve(counted);
   });

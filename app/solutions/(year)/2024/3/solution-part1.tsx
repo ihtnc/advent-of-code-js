@@ -32,9 +32,10 @@ const solution: Fn = async (input) => {
     const { instructions } = await inputParser(input);
 
     let sum = 0;
-    instructions.forEach(instruction => {
+    for (const instruction of instructions) {
       sum += instruction.data1 * instruction.data2;
-    });
+    }
+
     resolve(sum);
   });
 

@@ -26,13 +26,11 @@ const validateAll: GetFn = async ({ rules, updates }) => {
     const status: Array<ValidityStatus> = [];
 
     for (const item of updates) {
-      const tasks = [];
       let isValid = true;
 
-      for (let j = 0; j < item.length; j++) {
-        tasks.push(validate(j, item, rules).catch(() => isValid = false));
-      }
-
+      const tasks = item.map(
+        (_, i) => validate(i, item, rules).catch(() => isValid = false)
+      );
       await Promise.all(tasks);
 
       status.push({ item, isValid });
@@ -65,11 +63,12 @@ const validate: ValidateFn = async (index, update, rules) => {
   return promise;
 };
 
-type CalculateFn = (valid: Array<Array<number>>) => number;
+type CalculateFn = (update: Array<Array<number>>) => number;
 
-const calculate: CalculateFn = (valid) => {
+const calculate: CalculateFn = (update) => {
   let result = 0;
-  for (const item of valid) {
+
+  for (const item of update) {
     const mid = Math.floor(item.length / 2);
     result += item[mid];
   }

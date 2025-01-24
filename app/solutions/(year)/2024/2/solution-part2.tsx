@@ -10,24 +10,21 @@ const solution: Fn = async ({ reports }) => {
     for (let i = 0; i < reports.length; i++) {
       let safe = 0;
       const report = reports[i];
-      const tasks = [];
 
       // check part 1 for checkSafety definition
-      tasks.push(checkSafety(report)
+      const main = checkSafety(report)
         .then(() => safe++)
-        .catch(() => {})
-      );
+        .catch(() => {});
 
-      for (let j = 0; j < report.length; j++) {
+      const tests = report.map((_, j) => {
         const newReport = [...report];
         newReport.splice(j, 1);
-        tasks.push(checkSafety(newReport)
+        return checkSafety(newReport)
           .then(() => safe++)
-          .catch(() => {})
-        );
-      }
+          .catch(() => {});
+      });
 
-      await Promise.all(tasks);
+      await Promise.all([main, ...tests]);
 
       if (safe > 0) { count++; }
     }
