@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { fetchCode } from "@/actions/code";
-import ExpandableContainer from "./expandable-container";
-import TypescriptCode from "./code-snippet/typescript-code";
-import PuzzlePieceIcon from "@public/images/puzzle-piece.svg";
+import ExpandableContainer from "@/components/expandable-container";
+import TypescriptCode from "@/components/code-snippet/typescript-code";
+import StarIcon from "@public/images/star.svg";
 import CodeSimple from "@public/images/code-simple.svg";
 
 export default async function SolutionDetails({
@@ -22,8 +22,8 @@ export default async function SolutionDetails({
     <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4 group">
       <Image
         aria-hidden
-        src={PuzzlePieceIcon}
-        alt="Puzzle icon"
+        src={StarIcon}
+        alt="Star icon"
         width={48}
         height={48}
         className="dark:hue-rotate-60"

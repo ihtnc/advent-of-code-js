@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import StarIcon from "@public/images/star.svg";
+import { getSolutionUrl } from "@/actions/solution";
 
 export default function SolutionLink({
   day,
@@ -11,10 +12,12 @@ export default function SolutionLink({
   year: number,
   stars: number,
 }>) {
+  const solutionLink = getSolutionUrl(year, day);
+
   return (
     <Link
       className="flex items-center gap-2 group hover:underline hover:underline-offset-4"
-      href={`/solutions/${year}/${day}`}
+      href={solutionLink}
     >
       {`Day ${day}`}
       {Array.from({ length: stars }, (_, i) => (
