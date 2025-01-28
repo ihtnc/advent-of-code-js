@@ -2,7 +2,12 @@ import { redirect } from 'next/navigation';
 import { fetchJson } from "@/actions";
 import type { SessionData } from "@/api/session/types";
 import type { Response } from "@/api/types";
-import { FormState } from "./types";
+
+type FormState =
+  | {
+      message: string,
+    }
+  | undefined;
 
 export async function login(state: FormState, formData: FormData): Promise<FormState | undefined> {
   const request: SessionData = { session: formData.get('session') as string };

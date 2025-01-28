@@ -1,27 +1,27 @@
-import type { DataResponse } from "@/api/types";
-import type { Solution } from "@/api/solutions/types";
-import { fetchJson } from "./index";
+import { getCodeList } from "@/components/solution-details/utilities";
 
-export function getSolutionUrl(year: number, day: number): string {
-  return `/solutions/${year}/${day}`;
+type Solution = {
+  year: number,
+  problems: Array<Problem>,
 };
 
-const getNextConfig = () => {
-  const today = new Date();
-  const key = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-  return {
-    tags: [key],
-  };
-};
+type Problem = {
+  day: number,
+  stars: number,
+}
 
 export async function getSolutions(): Promise<Array<Solution>> {
-  return fetchJson<DataResponse<Array<Solution>>>('solutions', null, {
-    next: getNextConfig(),
-  })
-  .then((response) => {
-    return response.data || [];
-  })
-  .catch(() => {
-    return [];
-  });
+  return getCodeList().then((list) =>
+    list.map((group) => {
+      return {
+        year: group.year,
+        problems: group.days.map((item) => {
+          return {
+            day: item.day,
+            stars: item.parts.length,
+          };
+        }),
+      };
+    })
+  );
 }

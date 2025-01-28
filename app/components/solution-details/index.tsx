@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { fetchCode } from "@/actions/code";
 import ExpandableContainer from "@/components/expandable-container";
 import TypescriptCode from "@/components/code-snippet/typescript-code";
+import { getCode } from "./utilities";
 import StarIcon from "@public/images/star.svg";
 import CodeSimple from "@public/images/code-simple.svg";
 
@@ -16,7 +16,7 @@ export default async function SolutionDetails({
   part: number,
   answer: number,
 }>) {
-  const code = await fetchCode(year, day, part);
+  const code = await getCode(year, day, part);
 
   const label = (
     <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4 group">

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getSolutionUrl } from "./utilities";
 import StarIcon from "@public/images/star.svg";
-import { getSolutionUrl } from "@/actions/solution";
 
 export default function SolutionLink({
   day,

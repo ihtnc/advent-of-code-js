@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preexport": "rimraf app/api/code/contents",
-    "export": "copyfiles --verbose --up 3 \"app/solutions/(year)/*/*/solution-part*.tsx\" app/api/code/contents",
-    "postexport": "renamer --path-element ext \"app/api/code/contents/**\" --find .tsx --replace .txt --force",
+    "preexport": "rimraf app/components/solution-details/code",
+    "export": "copyfiles --verbose --up 2 \"app/solutions/*/*/solution-part*.tsx\" app/components/solution-details/code",
+    "postexport": "renamer --path-element ext \"app/components/solution-details/code/**\" --find .tsx --replace .txt --force",
     "dev": "next dev --turbopack",
     "debug": "cross-env NODE_OPTIONS=--inspect next dev --turbopack",
     "prebuild": "npm run export",
