@@ -9,17 +9,17 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
     const lines = input.split('\n');
     const reports: Array<Array<number>> = [];
 
-    lines.forEach((line) => {
-      if (!line) { return; }
+    for (const line of lines) {
+      if (!line) { continue; }
 
       const values = line.split(/\s+/);
-      if (values.length === 0) { return; }
+      if (values.length === 0) { continue; }
 
       const levels: Array<number> = [];
       values.forEach((level) => levels.push(Number(level)));
 
       reports.push(levels);
-    });
+    }
 
     resolve({ reports });
   });

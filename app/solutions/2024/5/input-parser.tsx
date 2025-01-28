@@ -15,8 +15,8 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
     const rules: Rules = {};
     const updates: Array<Array<number>> = [];
 
-    lines.forEach((line) => {
-      if (!line) { return; }
+    for (const line of lines) {
+      if (!line) { continue; }
 
       const ruleMatch = /^(?<num>\d+)\|(?<nxt>\d+)\s*$/g.exec(line);
       if(ruleMatch) {
@@ -30,7 +30,7 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
           rules[key] = [Number(successor)];
         }
 
-        return;
+        continue;
       }
 
       const updateMatch = /^(?:(?:\d+)|,(?:\d+))+\s*$/g.exec(line);
@@ -38,7 +38,7 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
         const update = line.split(',').map((num) => Number(num));
         updates.push(update);
       }
-    });
+    }
 
     resolve({ rules, updates });
   });

@@ -11,15 +11,15 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
     const data1: Array<number> = [];
     const data2: Array<number> = [];
 
-    lines.forEach((line) => {
-      if (!line) { return; }
+    for (const line of lines) {
+      if (!line) { continue; }
 
       const numbers = line.split(/\s+/);
-      if (numbers.length !== 2) { return; }
+      if (numbers.length !== 2) { continue; }
 
       data1.push(Number(numbers[0]));
       data2.push(Number(numbers[1]));
-    });
+    }
 
     resolve({ data1, data2 });
   });
