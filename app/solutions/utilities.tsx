@@ -12,7 +12,7 @@ export const sort = async (array: Array<number>): Promise<Array<number>> => {
 };
 
 export async  function getLocalInput<T>(year: number, day: number, fileName: string, parser?: IInputParser<T>): Promise<T> {
-  const basePath = 'app/solutions/(year)';
+  const basePath = 'app/solutions';
   const inputPath = path.join(process.cwd(), basePath, `${year}`, `${day}`, fileName);
   const input = await fs.readFile(inputPath, 'utf8');
   return input && parser ? await parser(input) : (input as unknown as T);

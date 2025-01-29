@@ -13,7 +13,6 @@ const solution: Fn = async ({ data1, data2 }) => {
     for (let i = 0; i < data1.length; i++) {
       result += Math.abs(sorted1[i] - sorted2[i]);
     }
-
     resolve(result);
   });
 

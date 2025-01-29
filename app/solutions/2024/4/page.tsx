@@ -11,14 +11,11 @@ export default async function Page() {
   const day = 4;
   const session = await getSession();
   const input = await getInput(session, year, day, inputParser);
-  const task1 = solution1(input);
-  const task2 = solution2(input);
-  const [part1, part2] = await Promise.all([task1, task2]);
 
   return (
     <AdventDetails year={year} day={day}>
-      <SolutionDetails year={year} day={day} part={1} answer={part1} />
-      <SolutionDetails year={year} day={day} part={2} answer={part2} />
+      <SolutionDetails year={year} day={day} part={1} answer={() => solution1(input)} />
+      <SolutionDetails year={year} day={day} part={2} answer={() => solution2(input)} />
     </AdventDetails>
   );
 };

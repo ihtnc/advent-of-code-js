@@ -51,10 +51,7 @@ const validate: ValidateFn = async (index, update, rules) => {
 
     const prev = update.slice(0, index);
     for (const item of prev) {
-      if (successors.indexOf(item) >= 0) {
-        reject();
-        return;
-      }
+      if (successors.indexOf(item) >= 0) { return reject(); }
     }
 
     resolve(true);
