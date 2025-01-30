@@ -1,7 +1,7 @@
 import typescript from 'highlight.js/lib/languages/typescript';
 import CodeSnippet from './index';
 
-export default async function TypescriptCode({
+export default function TypescriptCode({
   code,
   className,
 } : Readonly<{

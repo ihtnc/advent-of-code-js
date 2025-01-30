@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, isValidElement } from "react";
 import Image from "next/image";
 import ExpandableContainer from "@/components/expandable-container";
 import TypescriptCode from "@/components/code-snippet/typescript-code";
@@ -16,11 +16,15 @@ export default async function SolutionDetails({
   year: number,
   day: number,
   part: number,
-  answer: number | (() => Promise<number>),
+  answer: number | (() => Promise<number>) | React.ReactNode,
 }>) {
   const code = await getCode(year, day, part);
 
   const renderAnswer = () => {
+    if (isValidElement(answer)) {
+      return answer;
+    }
+
     if (typeof answer === "function") {
       return answer();
     }
