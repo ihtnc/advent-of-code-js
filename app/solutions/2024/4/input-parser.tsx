@@ -6,8 +6,10 @@ export type InputData = {
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
   const promise = new Promise<InputData>(async (resolve) => {
-    const lines = input.split('\n');
-    resolve({ lines });
+    setTimeout(() => {
+      const lines = input.split('\n');
+      resolve({ lines });
+    });
   });
 
   return promise;

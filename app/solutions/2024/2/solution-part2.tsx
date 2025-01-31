@@ -4,35 +4,31 @@ import { checkSafety } from "./solution-part1";
 type Fn = ({ reports }: InputData) => Promise<number>;
 
 const solution: Fn = async ({ reports }) => {
-  const promise = new Promise<number>(async (resolve) => {
-    let count = 0;
+  let count = 0;
 
-    for (let i = 0; i < reports.length; i++) {
-      let safe = 0;
-      const report = reports[i];
+  for (let i = 0; i < reports.length; i++) {
+    let safe = 0;
+    const report = reports[i];
 
-      // check part 1 for checkSafety definition
-      const main = checkSafety(report)
+    // check part 1 for checkSafety definition
+    const main = checkSafety(report)
+      .then(() => safe++)
+      .catch(() => {});
+
+    const tests = report.map((_, j) => {
+      const newReport = [...report];
+      newReport.splice(j, 1);
+      return checkSafety(newReport)
         .then(() => safe++)
         .catch(() => {});
+    });
 
-      const tests = report.map((_, j) => {
-        const newReport = [...report];
-        newReport.splice(j, 1);
-        return checkSafety(newReport)
-          .then(() => safe++)
-          .catch(() => {});
-      });
+    await Promise.all([main, ...tests]);
 
-      await Promise.all([main, ...tests]);
+    if (safe > 0) { count++; }
+  }
 
-      if (safe > 0) { count++; }
-    }
-
-    resolve(count);
-  });
-
-  return promise;
+  return count;
 };
 
 export { solution };

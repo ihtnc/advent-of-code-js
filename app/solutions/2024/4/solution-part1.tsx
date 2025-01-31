@@ -3,24 +3,20 @@ import type { InputData } from './input-parser';
 type Fn = ({ lines }: InputData) => Promise<number>;
 
 const solution: Fn = async ({ lines }) => {
-  const promise = new Promise<number>(async (resolve) => {
-    let total = 0;
-    for (let row = 0; row < lines.length; row++) {
-      const regexp = new RegExp(/[X]/, 'g');
-      const line = lines[row];
+  let total = 0;
+  for (let row = 0; row < lines.length; row++) {
+    const regexp = new RegExp(/[X]/, 'g');
+    const line = lines[row];
 
-      let match: RegExpExecArray | null;
-      while(match = regexp.exec(line)) {
-        const col = match.index;
+    let match: RegExpExecArray | null;
+    while(match = regexp.exec(line)) {
+      const col = match.index;
 
-        total += await findAll(row, col, lines);
-      }
+      total += await findAll(row, col, lines);
     }
+  }
 
-    resolve(total);
-  });
-
-  return promise;
+  return total;
 };
 
 type FindAllFn = {
@@ -64,15 +60,17 @@ type FindFn = (row: number, col: number, input: Array<string>, v: VDirection, h:
 
 const find: FindFn = async (row, col, input, v, h) => {
   const promise = new Promise<boolean>((resolve, reject) => {
-    const boundsCondition = getBoundsConditionFn(v, h);
-    const findCondition = getFindFn(v, h);
+    setTimeout(() => {
+      const boundsCondition = getBoundsConditionFn(v, h);
+      const findCondition = getFindFn(v, h);
 
-    const isWithinBounds = boundsCondition(row, col, input);
-    if (isWithinBounds && findCondition(row, col, input)) {
-      resolve(true);
-    } else {
-      reject();
-    }
+      const isWithinBounds = boundsCondition(row, col, input);
+      if (isWithinBounds && findCondition(row, col, input)) {
+        resolve(true);
+      } else {
+        reject();
+      }
+    });
   });
 
   return promise;

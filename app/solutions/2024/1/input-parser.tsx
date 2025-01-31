@@ -7,21 +7,23 @@ export type InputData = {
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
   const promise = new Promise<InputData>((resolve) => {
-    const lines = input.split('\n');
-    const data1: Array<number> = [];
-    const data2: Array<number> = [];
+    setTimeout(() => {
+      const lines = input.split('\n');
+      const data1: Array<number> = [];
+      const data2: Array<number> = [];
 
-    for (const line of lines) {
-      if (!line) { continue; }
+      for (const line of lines) {
+        if (!line) { continue; }
 
-      const numbers = line.split(/\s+/);
-      if (numbers.length !== 2) { continue; }
+        const numbers = line.split(/\s+/);
+        if (numbers.length !== 2) { continue; }
 
-      data1.push(Number(numbers[0]));
-      data2.push(Number(numbers[1]));
-    }
+        data1.push(Number(numbers[0]));
+        data2.push(Number(numbers[1]));
+      }
 
-    resolve({ data1, data2 });
+      resolve({ data1, data2 });
+    });
   });
 
   return promise;

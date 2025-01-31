@@ -13,8 +13,8 @@ export default async function Page() {
 
   return (
     <AdventDetails year={year} day={day}>
-      <SolutionDetails year={year} day={day} part={1} answer={<Solution part={1} data={input} />} />
-      <SolutionDetails year={year} day={day} part={2} answer={<Solution part={2} data={input} />} />
+      <SolutionDetails year={year} day={day} part={1} answer={<Solution part={1} input={input} />} />
+      <SolutionDetails year={year} day={day} part={2} answer={<Solution part={2} input={input} />} />
     </AdventDetails>
   );
 };

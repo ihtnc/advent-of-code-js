@@ -13,23 +13,19 @@ export type Path = {
 };
 
 const solution: Fn = async ({ map, guard }) => {
-  const promise = new Promise<number>(async (resolve) => {
-    const { start } = await traverse(map, guard);
+  const { start } = await traverse(map, guard);
 
-    let currentPath: Path | undefined = start;
-    while (currentPath?.next) {
-      const next = currentPath.next;
-      if (!next.move) { break; }
+  let currentPath: Path | undefined = start;
+  while (currentPath?.next) {
+    const next = currentPath.next;
+    if (!next.move) { break; }
 
-      map[next.move.y][next.move.x] = Marker.Visited;
-      currentPath = currentPath.next;
-    }
+    map[next.move.y][next.move.x] = Marker.Visited;
+    currentPath = currentPath.next;
+  }
 
-    const result = countVisited(map);
-    resolve(result);
-  });
-
-  return promise;
+  const result = countVisited(map);
+  return result;
 };
 
 type TraversedPath = {
@@ -41,59 +37,61 @@ type TraverseFn = (map: Array<Array<Marker>>, move: Move) => Promise<TraversedPa
 
 const traverse: TraverseFn = (map, move) => {
   const promise = new Promise<TraversedPath>((resolve) => {
-    const start: Path = {};
-    let pathType = PathType.Terminating;
-    let previousPath = start;
+    setTimeout(() => {
+      const start: Path = {};
+      let pathType = PathType.Terminating;
+      let previousPath = start;
 
-    let current: Move | null = move;
-    do {
-      // if the current step is part of the traversed path
-      //   then a loop is found
-      const visited = findMove(start, current);
-      if (visited) {
-        pathType = PathType.Looping;
-        break;
-      }
+      let current: Move | null = move;
+      do {
+        // if the current step is part of the traversed path
+        //   then a loop is found
+        const visited = findMove(start, current);
+        if (visited) {
+          pathType = PathType.Looping;
+          break;
+        }
 
-      const currentPath: Path = {
-        move: {
-          x: current.x,
-          y: current.y,
-          direction: current.direction,
-        },
-      };
-      previousPath.next = currentPath;
+        const currentPath: Path = {
+          move: {
+            x: current.x,
+            y: current.y,
+            direction: current.direction,
+          },
+        };
+        previousPath.next = currentPath;
 
-      const next = getNextMove(map, current);
-      if (next === null) { break; }
+        const next = getNextMove(map, current);
+        if (next === null) { break; }
 
-      if (next.x === current.x && next.y === current.y
-        && next.direction === current.direction) {
-        break;
-      }
+        if (next.x === current.x && next.y === current.y
+          && next.direction === current.direction) {
+          break;
+        }
 
-      // move just changes direction,
-      //   so just update the current move
-      if (next.x === current.x && next.y === current.y) {
-        current.direction = next.direction;
-        currentPath.move!.direction = next.direction;
-        continue;
-      }
+        // move just changes direction,
+        //   so just update the current move
+        if (next.x === current.x && next.y === current.y) {
+          current.direction = next.direction;
+          currentPath.move!.direction = next.direction;
+          continue;
+        }
 
-      // move is back to the start
-      //   do not proceed further
-      if (next.x === move.x && next.y === move.y
-        && next.direction === move.direction
-      ) {
-        pathType = PathType.Looping;
-        break;
-      }
+        // move is back to the start
+        //   do not proceed further
+        if (next.x === move.x && next.y === move.y
+          && next.direction === move.direction
+        ) {
+          pathType = PathType.Looping;
+          break;
+        }
 
-      previousPath = currentPath;
-      current = next;
-    } while(current !== null);
+        previousPath = currentPath;
+        current = next;
+      } while(current !== null);
 
-    resolve({ start, type: pathType });
+      resolve({ start, type: pathType });
+    });
   });
 
   return promise;

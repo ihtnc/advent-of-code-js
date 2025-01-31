@@ -11,36 +11,38 @@ export type InputData = {
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
   const promise = new Promise<InputData>(async (resolve) => {
-    const lines = input.split('\n');
-    const rules: Rules = {};
-    const updates: Array<Array<number>> = [];
+    setTimeout(() => {
+      const lines = input.split('\n');
+      const rules: Rules = {};
+      const updates: Array<Array<number>> = [];
 
-    for (const line of lines) {
-      if (!line) { continue; }
+      for (const line of lines) {
+        if (!line) { continue; }
 
-      const ruleMatch = /^(?<num>\d+)\|(?<nxt>\d+)\s*$/g.exec(line);
-      if(ruleMatch) {
-        const number = ruleMatch.groups?.num;
-        const successor = ruleMatch.groups?.nxt;
-        const key = Number(number);
+        const ruleMatch = /^(?<num>\d+)\|(?<nxt>\d+)\s*$/g.exec(line);
+        if(ruleMatch) {
+          const number = ruleMatch.groups?.num;
+          const successor = ruleMatch.groups?.nxt;
+          const key = Number(number);
 
-        if (rules[key]) {
-          rules[key].push(Number(successor));
-        } else {
-          rules[key] = [Number(successor)];
+          if (rules[key]) {
+            rules[key].push(Number(successor));
+          } else {
+            rules[key] = [Number(successor)];
+          }
+
+          continue;
         }
 
-        continue;
+        const updateMatch = /^(?:(?:\d+)|,(?:\d+))+\s*$/g.exec(line);
+        if (updateMatch) {
+          const update = line.split(',').map((num) => Number(num));
+          updates.push(update);
+        }
       }
 
-      const updateMatch = /^(?:(?:\d+)|,(?:\d+))+\s*$/g.exec(line);
-      if (updateMatch) {
-        const update = line.split(',').map((num) => Number(num));
-        updates.push(update);
-      }
-    }
-
-    resolve({ rules, updates });
+      resolve({ rules, updates });
+    });
   });
 
   return promise;

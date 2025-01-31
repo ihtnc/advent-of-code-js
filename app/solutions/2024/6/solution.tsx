@@ -8,17 +8,17 @@ import { solution as solutionPart2 } from './solution-part2';
 
 export default function Solution({
   part,
-  data,
+  input,
 } : Readonly<{
   part: number,
-  data: InputData,
+  input: InputData,
 }>) {
   const [ answer, setAnswer ] = useState<number>();
 
   useEffect(() => {
     const fn = part === 1 ? solutionPart1 : solutionPart2;
-    fn(data).then((result) => setAnswer(result));
-  }, [part, data]);
+    fn(input).then(setAnswer);
+  }, [part, input]);
 
   if (answer) { return <>{answer}</>; }
 

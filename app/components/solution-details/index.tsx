@@ -16,20 +16,20 @@ export default async function SolutionDetails({
   year: number,
   day: number,
   part: number,
-  answer: number | (() => Promise<number>) | React.ReactNode,
+  answer: (() => Promise<number>) | React.ReactNode,
 }>) {
   const code = await getCode(year, day, part);
 
   const renderAnswer = () => {
-    if (isValidElement(answer)) {
-      return answer;
+    if (!isValidElement(answer) && typeof answer === "function") {
+      return (
+        <Suspense fallback={<Spinner width={32} height={32} className="self-center" />}>
+          {answer()}
+        </Suspense>
+      );
     }
 
-    if (typeof answer === "function") {
-      return answer();
-    }
-
-    return Promise.resolve(answer);
+    return answer;
   };
 
   const label = (
@@ -44,9 +44,7 @@ export default async function SolutionDetails({
       />
       <span className="flex flex-col">
         <span className="text-sm text-gray-400 uppercase">Part {part} Answer</span>
-        <Suspense fallback={<Spinner width={32} height={32} className="self-center" />}>
-          {renderAnswer()}
-        </Suspense>
+        {renderAnswer()}
       </span>
       <span className="flex flex-col">
         <span className="text-sm text-gray-400 uppercase">View Code</span>
