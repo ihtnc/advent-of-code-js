@@ -16,7 +16,7 @@ export default function SolutionLink({
 
   return (
     <Link
-      className="flex items-center gap-2 group hover:underline hover:underline-offset-4"
+      className="flex items-center gap-1 group hover:underline hover:underline-offset-4"
       href={solutionLink}
     >
       {`Day ${day}`}
@@ -28,7 +28,7 @@ export default function SolutionLink({
           alt="Star icon"
           width={16}
           height={16}
-          className="dark:hue-rotate-60"
+          className="opacity-30 group-hover:opacity-100"
         />
       ))}
     </Link>

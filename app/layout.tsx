@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/components/header";
+import Main from "@/components/main";
 import Footer from "@/components/footer";
 import "./globals.css";
 
@@ -31,7 +32,9 @@ export default function RootLayout({
       >
         <div className="flex flex-col items-center justify-items-center min-h-screen min-w-80 p-8 pb-20 sm:p-20">
           <Header />
-          {children}
+          <Main className="mb-auto">
+            {children}
+          </Main>
           <Footer />
         </div>
       </body>

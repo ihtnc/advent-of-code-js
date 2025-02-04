@@ -25,7 +25,7 @@ export default function Footer({
           alt="Github logo"
           width={16}
           height={16}
-          className="dark:hue-rotate-60 group-hover:scale-125"
+          className="group-hover:scale-125"
         />
         Repository
       </Link>
@@ -42,7 +42,7 @@ export default function Footer({
           alt="Link icon"
           width={16}
           height={16}
-          className="dark:hue-rotate-60 group-hover:scale-125"
+          className="group-hover:scale-125"
         />
         Advent of Code
       </Link>

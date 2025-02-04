@@ -33,7 +33,7 @@ export default function AdventDetails({
               aria-hidden
               src={LocationArrowIcon}
               alt="Previous icon"
-              className="-rotate-[135deg] dark:hue-rotate-60 group-hover:scale-125"
+              className="-rotate-[135deg] group-hover:scale-125"
               width={32}
               height={32}
             />
@@ -64,7 +64,7 @@ export default function AdventDetails({
               aria-hidden
               src={LocationArrowIcon}
               alt="Previous icon"
-              className="rotate-[45deg] dark:hue-rotate-60 group-hover:scale-125"
+              className="rotate-[45deg] group-hover:scale-125"
               width={32}
               height={32}
             />

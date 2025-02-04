@@ -20,7 +20,7 @@ export default function Solution({
     fn(input).then(setAnswer);
   }, [part, input]);
 
-  if (answer) { return <>{answer}</>; }
+  if (answer !== undefined) { return <>{answer}</>; }
 
   return <Spinner width={32} height={32} className="self-center" />;
 };

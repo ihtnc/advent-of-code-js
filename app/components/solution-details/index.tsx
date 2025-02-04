@@ -54,7 +54,7 @@ export default async function SolutionDetails({
             alt="Code icon"
             width={20}
             height={20}
-            className="dark:hue-rotate-60 group-hover:scale-125 ml-auto mr-auto h-7 sm:h-8"
+            className="group-hover:scale-125 ml-auto mr-auto h-7 sm:h-8"
           />
         </span>
     </span>
@@ -63,7 +63,7 @@ export default async function SolutionDetails({
   return (
     <span className="gap-6">
       <ExpandableContainer label={label} labelClassName="cursor-pointer" childrenClassName="place-content-center">
-        <TypescriptCode code={code} className="text-sm" />
+        <TypescriptCode code={code} className="text-sm md:ml-16 w-full" />
       </ExpandableContainer>
     </span>
   );

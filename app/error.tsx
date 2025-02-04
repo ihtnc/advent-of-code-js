@@ -34,7 +34,7 @@ export default function Error({
             alt="User icon"
             width={24}
             height={24}
-            className="dark:hue-rotate-60 group-hover:scale-125"
+            className="group-hover:scale-125"
         />
         Retry
       </button>

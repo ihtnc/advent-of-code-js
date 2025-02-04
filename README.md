@@ -2,7 +2,9 @@
 [![deploy](https://deploy-badge.vercel.app/vercel/advent-of-code-js?name=website)](https://advent-of-code-js.vercel.app/)
 
 # Advent of Code JS
-An app with solutions to the [Advent of Code](https://adventofcode.com/) challenges.
+See it [live](https://advent-of-code-js.vercel.app/)!
+
+Repository for the app with solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 
 ## Folder structure
 Solutions to the Advent of Code challenges are located in the folder `/app/solutions/` with the following structure:

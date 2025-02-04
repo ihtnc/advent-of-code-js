@@ -67,6 +67,7 @@ export async function getCodeList() {
       group.days.push(item);
     }
 
+    group.days.sort((a, b) => a.day - b.day);
     list.push(group);
   }
 

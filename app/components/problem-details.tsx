@@ -64,7 +64,7 @@ export default function ProblemDetails({
               alt="Document icon"
               width={20}
               height={20}
-              className="dark:hue-rotate-60 group-hover:scale-125 ml-auto mr-auto"
+              className="group-hover:scale-125 ml-auto mr-auto"
             />
           </Link>
         </span>
