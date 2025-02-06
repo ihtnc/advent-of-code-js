@@ -27,7 +27,7 @@ export default function Login() {
             alt="Login icon"
             width={24}
             height={24}
-            className="hover:scale-125"
+            className="hover:scale-125 dark:invert"
           />
         )}
       </button>

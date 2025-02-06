@@ -15,7 +15,7 @@ export default function Spinner({
       aria-hidden
       src={LoadingIcon}
       alt="Loading icon"
-      className={`${["animate-spin dark:hue-rotate-60", className].join(' ')}`}
+      className={`${["animate-spin dark:invert", className].join(' ')}`}
       width={width} height={height}
     />
   );

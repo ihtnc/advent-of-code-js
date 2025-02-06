@@ -31,7 +31,7 @@ export default async function Home() {
                     alt="Challenge icon"
                     width={24}
                     height={24}
-                    className="group-hover:scale-125"
+                    className="group-hover:scale-125 dark:invert"
                   />{year}
                 </span>
               )}

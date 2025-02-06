@@ -20,7 +20,7 @@ export default function YearTemplate({
           aria-hidden
           src={LocationArrowIcon}
           alt="Back icon"
-          className="-rotate-[135deg] group-hover:scale-125"
+          className="-rotate-[135deg] group-hover:scale-125  dark:invert"
           width={16}
           height={16}
         />

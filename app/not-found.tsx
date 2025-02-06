@@ -11,7 +11,7 @@ export default function NotFound() {
           alt="Not found icon"
           width={32}
           height={32}
-          className="dark:hue-rotate-60"
+          className="dark:invert"
         />
         Page not found.
       </h1>

@@ -28,7 +28,7 @@ export default function SolutionLink({
           alt="Star icon"
           width={16}
           height={16}
-          className="opacity-30 group-hover:opacity-100"
+          className="opacity-30 group-hover:opacity-100 dark:invert"
         />
       ))}
     </Link>

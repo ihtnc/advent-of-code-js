@@ -40,7 +40,7 @@ export default async function SolutionDetails({
         alt="Star icon"
         width={48}
         height={48}
-        className="dark:hue-rotate-60"
+        className="dark:invert"
       />
       <span className="flex flex-col">
         <span className="text-sm text-gray-400 uppercase">Part {part} Answer</span>
@@ -54,7 +54,7 @@ export default async function SolutionDetails({
             alt="Code icon"
             width={20}
             height={20}
-            className="group-hover:scale-125 ml-auto mr-auto h-7 sm:h-8"
+            className="group-hover:scale-125 ml-auto mr-auto h-7 sm:h-8 dark:invert"
           />
         </span>
     </span>
