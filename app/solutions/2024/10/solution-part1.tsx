@@ -1,12 +1,4 @@
-import type { InputData } from './types';
-
-type Trail = {
-  height: number,
-  top?: Trail,
-  bottom?: Trail,
-  left?: Trail,
-  right?: Trail,
-};
+import { Direction, type InputData, type Path, type Trail } from './types';
 
 type Fn = ({ map }: InputData) => Promise<number>;
 
@@ -111,20 +103,6 @@ const find: FindFn = (map, height) => {
 
   return tiles;
 };
-
-enum Direction {
-  UP = 'UP',
-  DOWN = 'DOWN',
-  LEFT = 'LEFT',
-  RIGHT = 'RIGHT',
-};
-
-type Path = {
-  trail: Trail,
-  next?: Path,
-  direction?: Direction,
-  visited?: boolean,
-}
 
 type FindSummitFn = (start: Trail, findAll?: boolean) => Promise<Array<Path>>;
 

@@ -1,4 +1,4 @@
-import type { InputData } from './types';
+import type { InputData, Rules, UniqueStones } from './types';
 
 type Fn = ({ stones }: InputData) => Promise<number>;
 
@@ -6,10 +6,6 @@ const solution: Fn = async ({ stones }) => {
   const blinks = 25;
   const response = await blink(stones, blinks);
   return response;
-};
-
-type Rules = {
-  [key: string]: Array<string>,
 };
 
 type BlinkFn = (stones: Array<string>, count: number) => Promise<number>;
@@ -31,10 +27,6 @@ const blink: BlinkFn = async (stones, count) => {
   });
 
   return promise;
-};
-
-type UniqueStones = {
-  [key: string]: number,
 };
 
 type CalculateFn = (stone: string, rules: Rules, count: number) => number;

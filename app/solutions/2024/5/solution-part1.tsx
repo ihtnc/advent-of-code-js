@@ -1,4 +1,4 @@
-import type { InputData, Rules } from './types';
+import type { InputData, Rules, ValidityStatus } from './types';
 
 type Fn = ({ rules, updates }: InputData) => Promise<number>;
 
@@ -8,11 +8,6 @@ const solution: Fn = async ({ rules, updates }) => {
     .map(({ item }) => item);
   const result = calculate(valid);
   return result;
-};
-
-type ValidityStatus = {
-  item: Array<number>,
-  isValid: boolean,
 };
 
 type GetFn = ({ rules, updates }: InputData) => Promise<Array<ValidityStatus>>;

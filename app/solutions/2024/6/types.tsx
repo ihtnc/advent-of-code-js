@@ -22,3 +22,18 @@ export type InputData = {
   map: Array<Array<Marker>>,
   guard: Move,
 };
+
+export enum PathType {
+  Looping = "Looping",
+  Terminating = "Terminating",
+};
+
+export type Path = {
+  move?: Move,
+  next?: Path,
+};
+
+export type TraversedPath = {
+  start: Path,
+  type: PathType,
+};

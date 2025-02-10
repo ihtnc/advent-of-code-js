@@ -15,3 +15,7 @@ export interface FileBlock extends Block {
 export type InputData = {
   blocks: Array<Block>,
 };
+
+export type BlockUnit = {
+  id?: number,
+};

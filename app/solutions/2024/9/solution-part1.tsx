@@ -1,4 +1,4 @@
-import { BlockType, type Block, type FileBlock, type InputData } from './types';
+import { BlockType, type BlockUnit, type Block, type FileBlock, type InputData } from './types';
 
 type Fn = ({ blocks }: InputData) => Promise<number>;
 
@@ -13,10 +13,6 @@ const solution: Fn = async ({ blocks }) => {
   });
 
   return promise;
-};
-
-type BlockUnit = {
-  id?: number,
 };
 
 type GetAllocationFn = (blocks: Array<Block>) => Array<BlockUnit>;

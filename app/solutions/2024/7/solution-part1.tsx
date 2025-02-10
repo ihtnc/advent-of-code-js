@@ -1,4 +1,4 @@
-import type { InputData, Test } from './types';
+import { Operation, type TestNode, type InputData, type Test } from './types';
 
 type Fn = ({ tests }: InputData) => Promise<number>;
 
@@ -17,24 +17,6 @@ const solution: Fn = async ({ tests }) => {
   let sum = 0;
   for (const test of solved) { sum += test.result; }
   return sum;
-};
-
-export enum Operation {
-  Sum = '+',
-  Product = '*',
-  Concat = '||',
-  Terminate = '!',
-};
-
-export type TestNode = {
-  parent: TestNode | null,
-  operation: Operation | null,
-  value: number,
-  level: number,
-  result: number,
-  sum: TestNode | null,
-  product: TestNode | null,
-  concat: TestNode | null,
 };
 
 type FindFn = (test: Test, calculate: CalculateFn) => Promise<boolean>;

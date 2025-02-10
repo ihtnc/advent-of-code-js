@@ -1,5 +1,5 @@
-import type { InputData, Test } from './types';
-import { type CalculateFn, Operation, createTestNode, findSolvedTest } from './solution-part1';
+import { Operation, type InputData, type Test } from './types';
+import { type CalculateFn, createTestNode, findSolvedTest } from './solution-part1';
 
 type Fn = ({ tests }: InputData) => Promise<number>;
 

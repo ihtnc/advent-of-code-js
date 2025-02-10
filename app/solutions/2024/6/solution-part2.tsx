@@ -1,5 +1,5 @@
-import { Marker, type InputData, type Move } from './types';
-import { PathType, type Path, getNextMove, traverse } from './solution-part1';
+import { Marker, PathType, type Path, type InputData, type Move } from './types';
+import { getNextMove, traverse } from './solution-part1';
 
 type Fn = ({ map, guard }: InputData) => Promise<number>;
 

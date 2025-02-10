@@ -1,4 +1,4 @@
-import type { InputData } from './types';
+import { HDirection, VDirection, type InputData } from './types';
 
 type Fn = ({ lines }: InputData) => Promise<number>;
 
@@ -42,18 +42,6 @@ const findAll: FindAllFn = async (row, col, input) => {
   await Promise.all(tasks);
 
   return found;
-};
-
-enum VDirection {
-  Down,
-  Up,
-  None,
-};
-
-enum HDirection {
-  Right,
-  Left,
-  None,
 };
 
 type FindFn = (row: number, col: number, input: Array<string>, v: VDirection, h: HDirection) => Promise<boolean>;

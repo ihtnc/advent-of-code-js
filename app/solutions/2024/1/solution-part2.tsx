@@ -1,4 +1,4 @@
-import type { InputData } from "./types";
+import type { InputData, OccurenceData } from "./types";
 
 type Fn = ({ data1, data2 }: InputData) => Promise<number>;
 
@@ -15,10 +15,6 @@ const solution: Fn = async ({ data1, data2 }) => {
     }
   }
   return result;
-};
-
-type OccurenceData = {
-  [key: number]: number,
 };
 
 type CountFn = (data: Array<number>) => Promise<OccurenceData>;

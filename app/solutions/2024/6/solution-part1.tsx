@@ -1,16 +1,6 @@
-import { Direction, Marker, type Move, type InputData } from './types';
+import { Direction, Marker, PathType, type Move, type InputData, type Path, type TraversedPath } from './types';
 
 type Fn = ({ map, guard }: InputData) => Promise<number>;
-
-export enum PathType {
-  Looping,
-  Terminating,
-};
-
-export type Path = {
-  move?: Move,
-  next?: Path,
-};
 
 const solution: Fn = async ({ map, guard }) => {
   const { start } = await traverse(map, guard);
@@ -26,11 +16,6 @@ const solution: Fn = async ({ map, guard }) => {
 
   const result = countVisited(map);
   return result;
-};
-
-type TraversedPath = {
-  start: Path,
-  type: PathType,
 };
 
 type TraverseFn = (map: Array<Array<Marker>>, move: Move) => Promise<TraversedPath>;
