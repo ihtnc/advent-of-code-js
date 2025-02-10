@@ -68,19 +68,19 @@ const blockInvalidPaths: BlockFn = (map) => {
     for (const tile of line) {
       const nextHeight = tile.height + 1;
 
-      if (tile.right?.height != nextHeight) {
+      if (tile.right?.height !== nextHeight) {
         tile.right = undefined;
       }
 
-      if (tile.left?.height != nextHeight) {
+      if (tile.left?.height !== nextHeight) {
         tile.left = undefined;
       }
 
-      if (tile.bottom?.height != nextHeight) {
+      if (tile.bottom?.height !== nextHeight) {
         tile.bottom = undefined;
       }
 
-      if (tile.top?.height != nextHeight) {
+      if (tile.top?.height !== nextHeight) {
         tile.top = undefined;
       }
     }

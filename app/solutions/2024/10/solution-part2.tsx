@@ -1,7 +1,7 @@
 import type { InputData } from './types';
 import { blockInvalidPaths, convert, find, findSummit } from './solution-part1';
 
-type Fn = ({ }: InputData) => Promise<number>;
+type Fn = ({ map }: InputData) => Promise<number>;
 
 const solution: Fn = async ({ map: input }) => {
   // check part 1 for convert definition
