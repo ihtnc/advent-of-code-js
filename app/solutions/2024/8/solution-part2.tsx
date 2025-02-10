@@ -1,4 +1,4 @@
-import type { Coordinates, InputData } from './input-parser';
+import type { Coordinates, InputData } from './types';
 import { type SearchPairsFn, getAntiNodes, removeDuplicates, searchAntenna } from './solution-part1';
 
 type Fn = ({ map, antennae }: InputData) => Promise<number>;

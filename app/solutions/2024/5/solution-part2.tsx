@@ -1,4 +1,4 @@
-import type { InputData, Rules } from './input-parser';
+import type { InputData, Rules } from './types';
 import { validateAll, calculate } from './solution-part1';
 
 type Fn = ({ rules, updates }: InputData) => Promise<number>;

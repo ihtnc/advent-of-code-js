@@ -1,4 +1,4 @@
-import type { Coordinates, InputData, Map } from './input-parser';
+import type { Coordinates, InputData, Map } from './types';
 
 type Fn = ({ map, antennae }: InputData) => Promise<number>;
 

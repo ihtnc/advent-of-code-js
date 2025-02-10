@@ -1,4 +1,4 @@
-import type { InputData } from './input-parser';
+import type { InputData } from './types';
 import { blockInvalidPaths, convert, find, findSummit } from './solution-part1';
 
 type Fn = ({ }: InputData) => Promise<number>;

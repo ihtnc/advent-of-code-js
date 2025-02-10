@@ -1,4 +1,4 @@
-import type { InputData } from './input-parser';
+import type { InputData } from './types';
 import { blink } from './solution-part1';
 
 type Fn = ({ stones }: InputData) => Promise<number>;

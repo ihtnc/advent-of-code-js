@@ -1,4 +1,4 @@
-import type { InputData } from "./input-parser";
+import type { InputData } from "./types";
 
 type Fn = ({ data1, data2 }: InputData) => Promise<number>;
 

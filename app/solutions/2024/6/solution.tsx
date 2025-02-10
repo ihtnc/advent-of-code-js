@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Spinner from '@/components/spinner';
-import { InputData } from "./input-parser";
+import { InputData } from "./types";
 import { solution as solutionPart1 } from './solution-part1';
 import { solution as solutionPart2 } from './solution-part2';
 

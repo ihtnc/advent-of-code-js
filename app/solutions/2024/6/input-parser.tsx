@@ -1,29 +1,5 @@
 import type { IInputParser } from "@/actions/advent-of-code";
-
-export enum Marker {
-  Obstacle = '#',
-  Guard = 'G',
-  Empty = '.',
-  Visited = 'x',
-};
-
-export enum Direction {
-  Up = '^',
-  Down = 'v',
-  Left = '<',
-  Right = '>',
-}
-
-export type Move = {
-  x: number,
-  y: number,
-  direction: Direction,
-};
-
-export type InputData = {
-  map: Array<Array<Marker>>,
-  guard: Move,
-};
+import { Direction, Marker, type InputData, type Move } from "./types";
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
   const promise = new Promise<InputData>(async (resolve) => {

@@ -1,4 +1,4 @@
-import { BlockType, type Block, type FileBlock, type InputData } from './input-parser';
+import { BlockType, type Block, type FileBlock, type InputData } from './types';
 import { calculateChecksum, getDiskAllocation } from './solution-part1';
 
 type Fn = ({ blocks }: InputData) => Promise<number>;

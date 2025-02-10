@@ -1,9 +1,5 @@
 import type { IInputParser } from "@/actions/advent-of-code";
-
-export type InputData = {
-  data1: Array<number>,
-  data2: Array<number>,
-};
+import type { InputData } from "./types";
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
   const promise = new Promise<InputData>((resolve) => {

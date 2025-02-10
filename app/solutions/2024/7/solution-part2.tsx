@@ -1,4 +1,4 @@
-import type { InputData, Test } from './input-parser';
+import type { InputData, Test } from './types';
 import { type CalculateFn, Operation, createTestNode, findSolvedTest } from './solution-part1';
 
 type Fn = ({ tests }: InputData) => Promise<number>;

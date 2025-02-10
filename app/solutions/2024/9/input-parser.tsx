@@ -1,22 +1,5 @@
 import type { IInputParser } from "@/actions/advent-of-code";
-
-export enum BlockType {
-  File = '#',
-  Free = '.',
-}
-
-export type Block = {
-  type: BlockType,
-  space: number,
-};
-
-export interface FileBlock extends Block {
-  id: number,
-};
-
-export type InputData = {
-  blocks: Array<Block>,
-};
+import { BlockType, type Block, type FileBlock, type InputData } from "./types";
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
   const promise = new Promise<InputData>(async (resolve) => {

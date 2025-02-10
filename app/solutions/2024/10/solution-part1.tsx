@@ -1,4 +1,4 @@
-import type { InputData } from './input-parser';
+import type { InputData } from './types';
 
 type Trail = {
   height: number,

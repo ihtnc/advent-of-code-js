@@ -1,4 +1,4 @@
-import { Direction, Move, InputData, Marker } from './input-parser';
+import { Direction, Marker, type Move, type InputData } from './types';
 
 type Fn = ({ map, guard }: InputData) => Promise<number>;
 

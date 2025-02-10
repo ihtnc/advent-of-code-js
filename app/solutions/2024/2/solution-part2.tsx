@@ -1,4 +1,4 @@
-import type { InputData } from "./input-parser";
+import type { InputData } from "./types";
 import { checkSafety } from "./solution-part1";
 
 type Fn = ({ reports }: InputData) => Promise<number>;
