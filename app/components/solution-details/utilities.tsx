@@ -32,6 +32,26 @@ export async function getCode(year: number, day: number, part: number): Promise<
   return cleaned;
 };
 
+function getTypesFullPath(year: string, day: string): string {
+  const basePath = getCodeBasePath();
+  const fullPath = path.join(process.cwd(), basePath, year, day, `types.txt`);
+  return fullPath;
+};
+
+export async function getTypes(year: number, day: number): Promise<string> {
+  if(!year || !day) { return ''; }
+
+  const codePath = getTypesFullPath(`${year}`, `${day}`);
+  const contents = await fs.readFile(codePath, 'utf8');
+
+  // remove import definition codes
+  const importRegex = /^import[\w{}\s,]+from[^;]+;\s*/gm
+  const exportRegex = /^export\s+(?=type|enum|interface)/gm
+  const cleaned = contents.replace(importRegex, '')
+    .replace(exportRegex, '');
+  return cleaned;
+};
+
 type Group = {
   year: number,
   days: Array<Item>,
@@ -61,7 +81,9 @@ export async function getCodeList() {
       const parts = await fs.readdir(path.join(file, day));
       const item: Item = {
         day: Number(day),
-        parts: parts.map(part => Number(part.replace('solution-part', '').replace('.txt', ''))),
+        parts: parts
+          .filter(part => part.startsWith('solution-part'))
+          .map(part => Number(part.replace('solution-part', '').replace('.txt', ''))),
       };
 
       group.days.push(item);

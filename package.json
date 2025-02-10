@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "export-code": "copyfiles --verbose --up 2 \"app/solutions/*/*/solution-part*.tsx\" app/components/solution-details/code",
+    "export-type": "copyfiles --verbose --up 2 \"app/solutions/*/*/types.tsx\" app/components/solution-details/code",
     "preexport": "rimraf app/components/solution-details/code",
-    "export": "copyfiles --verbose --up 2 \"app/solutions/*/*/solution-part*.tsx\" app/components/solution-details/code",
+    "export": "npm run export-code && npm run export-type",
     "postexport": "renamer --path-element ext \"app/components/solution-details/code/**\" --find .tsx --replace .txt --force",
     "dev": "next dev --turbopack",
     "debug": "cross-env NODE_OPTIONS=--inspect next dev --turbopack",

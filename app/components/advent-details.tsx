@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getSolutionUrl } from "@/components/solution-link/utilities";
 import ProblemDetails from "@/components/problem-details";
+import TypeDetails from "@/components/solution-details/type-details";
 import LocationArrowIcon from "@public/images/location-arrow.svg";
 import DailyCalendarIcon from "@public/images/daily-calendar.svg";
 
@@ -22,6 +23,7 @@ export default function AdventDetails({
   return (
     <div className="flex flex-col ml-6 gap-6">
       <ProblemDetails year={year} day={day} />
+      <TypeDetails year={year} day={day} />
       {children}
       <span className="flex mt-6">
         {previousDayUrl && (

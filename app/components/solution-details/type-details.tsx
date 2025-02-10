@@ -1,53 +1,31 @@
-import { Suspense, isValidElement } from "react";
 import Image from "next/image";
 import ExpandableContainer from "@/components/expandable-container";
 import TypescriptCode from "@/components/code-snippet/typescript-code";
-import Spinner from "@/components/spinner";
-import { getCode } from "./utilities";
-import StarIcon from "@public/images/star.svg";
+import { getTypes } from "./utilities";
+import FileCodeIcon from "@public/images/file-code.svg";
 import CodeSimpleIcon from "@public/images/code-simple.svg";
 
-export default async function SolutionDetails({
+export default async function TypeDetails({
   year,
   day,
-  part,
-  answer,
 } : Readonly<{
   year: number,
   day: number,
-  part: number,
-  answer: (() => Promise<number>) | React.ReactNode,
 }>) {
-  const code = await getCode(year, day, part);
-
-  const renderAnswer = () => {
-    if (!isValidElement(answer) && typeof answer === "function") {
-      return (
-        <Suspense fallback={<Spinner width={32} height={32} className="self-center" />}>
-          {answer()}
-        </Suspense>
-      );
-    }
-
-    return answer;
-  };
+  const types = await getTypes(year, day);
 
   const label = (
     <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4 group">
       <Image
         aria-hidden
-        src={StarIcon}
-        alt="Star icon"
+        src={FileCodeIcon}
+        alt="File icon"
         width={48}
         height={48}
         className="dark:invert"
       />
       <span className="flex flex-col">
-        <span className="text-sm text-gray-400 uppercase">Part {part} Answer</span>
-        {renderAnswer()}
-      </span>
-      <span className="flex flex-col">
-        <span className="text-sm text-gray-400 uppercase">View Code</span>
+        <span className="text-sm text-gray-400 uppercase">View Types</span>
           <Image
             aria-hidden
             src={CodeSimpleIcon}
@@ -63,7 +41,7 @@ export default async function SolutionDetails({
   return (
     <span className="gap-6">
       <ExpandableContainer label={label} labelClassName="cursor-pointer" childrenClassName="place-content-center">
-        <TypescriptCode code={code} className="text-sm md:ml-16 w-full" />
+        <TypescriptCode code={types} className="text-sm md:ml-16 w-full" />
       </ExpandableContainer>
     </span>
   );
