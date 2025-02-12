@@ -1,7 +1,7 @@
-import { redirect } from 'next/navigation';
-import { fetchJson } from "@/actions";
-import type { SessionData } from "@/api/session/types";
-import type { Response } from "@/api/types";
+'use server';
+
+import { AuthError } from 'next-auth';
+import { signOut, signIn } from '@auth';
 
 type FormState =
   | {
@@ -9,20 +9,25 @@ type FormState =
     }
   | undefined;
 
-export async function login(state: FormState, formData: FormData): Promise<FormState | undefined> {
-  const request: SessionData = { session: formData.get('session') as string };
-
-  const response = await fetchJson<Response>('session', null, {
-    method: 'POST',
-    body: JSON.stringify(request),
-  });
-
-  if (!response.success) {
-    const errors: FormState = {
-      message: response.message || 'Failed to login',
-    };
-    return errors;
+export async function login(
+  state: FormState,
+  formData: FormData,
+) {
+  try {
+    await signIn('credentials', formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return { message: 'Invalid credentials.' };
+        default:
+          return { message: 'Something went wrong.' };
+      }
+    }
+    throw error;
   }
+};
 
-  redirect('/');
+export async function logout() {
+  return await signOut({ redirectTo: '/' });
 };

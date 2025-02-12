@@ -1,7 +1,6 @@
-import { cookies } from 'next/headers';
+import { auth } from '@auth';
 
 export async function getSession(): Promise<string> {
-  const store = await cookies();
-  const session = store.get('session');
-  return session?.value || '';
+  const session = await auth();
+  return session?.adventOfCodeSession || '';
 }

@@ -1,5 +1,6 @@
 import path from 'path';
 import { fetchExternalText } from './index';
+import { getSession } from "./session";
 
 export function getAdventOfCodeUrl(year?: number, day?: number): string {
   const baseUrl = new URL('https://adventofcode.com');
@@ -27,8 +28,8 @@ export interface IInputParser<T> {
   (input: string): Promise<T>;
 };
 
-export async function getInput<T>(session: string, year: number, day: number, parser?: IInputParser<T>): Promise<T> {
-  const input = await fetchChallengeInput(session, year, day);
+export async function getInput<T>(year: number, day: number, parser?: IInputParser<T>): Promise<T> {
+  const input = await fetchChallengeInput(year, day);
   return input && parser ? await parser(input) : (input as unknown as T);
 }
 
@@ -45,7 +46,8 @@ const getAdventOfCodeNextConfig = (session: string) => {
   };
 };
 
-const fetchChallengeInput = async (session: string, year: number, day: number) => {
+const fetchChallengeInput = async (year: number, day: number) => {
+  const session = await getSession();
   const url = getAdventOfCodeInputUrl(year, day);
   const response = await fetchExternalText(url, {
     headers: getAdventOfCodeHeaders(session),

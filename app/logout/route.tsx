@@ -1,10 +1,5 @@
-import { redirect } from 'next/navigation';
-import { fetchJson } from "@/actions";
+import { logout } from '@/actions/auth';
 
 export async function GET() {
-  await fetchJson<Response>('session', null, {
-    method: 'DELETE',
-  });
-
-  redirect('/login');
+  return await logout();
 };
