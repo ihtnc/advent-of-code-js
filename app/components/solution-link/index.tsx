@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getSolutionUrl } from "./utilities";
+import { getSolutionUrl } from "./actions";
 import StarIcon from "@public/images/star.svg";
 
 export default function SolutionLink({

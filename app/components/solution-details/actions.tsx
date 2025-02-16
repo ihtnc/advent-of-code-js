@@ -62,13 +62,15 @@ type Item = {
   parts: Array<number>,
 }
 
-export async function getCodeList() {
+export async function getCodeList(filterYear?: number) {
   const list: Array<Group> = [];
 
   const basePath = getCodeBasePath();
   const years = await fs.readdir(basePath);
 
   for(const year of years) {
+    if (filterYear && year !== `${filterYear}`) { continue; }
+
     const group: Group = {
       year: Number(year),
       days: [],
@@ -93,5 +95,32 @@ export async function getCodeList() {
     list.push(group);
   }
 
+  list.sort((a, b) => b.year - a.year);
   return list;
 };
+
+type Solution = {
+  year: number,
+  problems: Array<Problem>,
+};
+
+type Problem = {
+  day: number,
+  stars: number,
+}
+
+export async function getSolutions(): Promise<Array<Solution>> {
+  return getCodeList().then((list) =>
+    list.map((group) => {
+      return {
+        year: group.year,
+        problems: group.days.map((item) => {
+          return {
+            day: item.day,
+            stars: item.parts.length,
+          };
+        }),
+      };
+    })
+  );
+}

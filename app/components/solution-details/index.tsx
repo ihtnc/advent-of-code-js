@@ -3,7 +3,7 @@ import Image from "next/image";
 import ExpandableContainer from "@/components/expandable-container";
 import TypescriptCode from "@/components/code-snippet/typescript-code";
 import Spinner from "@/components/spinner";
-import { getCode } from "./utilities";
+import { getCode } from "./actions";
 import StarIcon from "@public/images/star.svg";
 import CodeSimpleIcon from "@public/images/code-simple.svg";
 
@@ -16,7 +16,7 @@ export default async function SolutionDetails({
   year: number,
   day: number,
   part: number,
-  answer: (() => Promise<number>) | React.ReactNode,
+  answer: (() => Promise<number | bigint>) | React.ReactNode,
 }>) {
   const code = await getCode(year, day, part);
 

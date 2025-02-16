@@ -1,5 +1,5 @@
 import type { InputData } from "./types";
-import { sort } from "@/solutions/utilities";
+import { sort } from "@/solutions/actions";
 
 type Fn =({ data1, data2 }: InputData) => Promise<number>;
 

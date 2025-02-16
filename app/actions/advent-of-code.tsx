@@ -1,5 +1,4 @@
 import path from 'path';
-import { fetchExternalText } from './index';
 import { getSession } from "./session";
 
 export function getAdventOfCodeUrl(year?: number, day?: number): string {
@@ -54,4 +53,14 @@ const fetchChallengeInput = async (year: number, day: number) => {
     next: getAdventOfCodeNextConfig(session),
   });
   return response;
+}
+
+const fetchExternalText = async (url: string, options?: RequestInit): Promise<string> => {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`);
+  }
+
+  const responseBody = await response.text();
+  return responseBody;
 }

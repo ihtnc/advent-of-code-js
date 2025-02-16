@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getSolutionUrl } from "@/components/solution-link/utilities";
 import ProblemDetails from "@/components/problem-details";
 import TypeDetails from "@/components/solution-details/type-details";
+import { getCodeList } from "@/components/solution-details/actions";
+import { getSolutionUrl } from "@/components/solution-link/actions";
 import LocationArrowIcon from "@public/images/location-arrow.svg";
 import DailyCalendarIcon from "@public/images/daily-calendar.svg";
 
-export default function AdventDetails({
+export default async function AdventDetails({
   year,
   day,
   children,
@@ -15,10 +16,15 @@ export default function AdventDetails({
   day: number,
   children: React.ReactNode,
 }>) {
+  const groups = await getCodeList(year);
+  const group = groups.shift();
+
   const previousDay = day-1;
   const nextDay = day+1;
-  const previousDayUrl = previousDay >= 1 ? getSolutionUrl(year, previousDay) : null;
-  const nextDayUrl = nextDay <= 25 ? getSolutionUrl(year, nextDay) : null;
+  const firstDay = group?.days[0].day || 1;
+  const lastDay = group?.days[group.days.length-1].day || 25;
+  const previousDayUrl = previousDay >= firstDay ? getSolutionUrl(year, previousDay) : null;
+  const nextDayUrl = nextDay <= lastDay ? getSolutionUrl(year, nextDay) : null;
 
   return (
     <div className="flex flex-col ml-6 gap-6">
