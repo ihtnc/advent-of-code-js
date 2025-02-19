@@ -1,11 +1,11 @@
 import { promises as fs } from "fs";
 import path from 'path';
 
-function getCodeBasePath(): string {
+const getCodeBasePath = (): string => {
   return 'app/components/solution-details/code';
 };
 
-function getCodeFullPath(year: string, day: string, part: string): string {
+const getCodeFullPath = (year: string, day: string, part: string): string => {
   const basePath = getCodeBasePath();
   const fullPath = path.join(process.cwd(), basePath, year, day, `solution-part${part}.txt`);
   return fullPath;
@@ -32,7 +32,7 @@ export async function getCode(year: number, day: number, part: number): Promise<
   return cleaned;
 };
 
-function getTypesFullPath(year: string, day: string): string {
+const getTypesFullPath = (year: string, day: string): string => {
   const basePath = getCodeBasePath();
   const fullPath = path.join(process.cwd(), basePath, year, day, `types.txt`);
   return fullPath;

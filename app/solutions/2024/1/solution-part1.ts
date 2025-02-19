@@ -1,5 +1,4 @@
 import type { InputData } from "./types";
-import { sort } from "@/solutions/actions";
 
 type Fn =({ data1, data2 }: InputData) => Promise<number>;
 
@@ -13,6 +12,17 @@ const solution: Fn = async ({ data1, data2 }) => {
     result += Math.abs(sorted1[i] - sorted2[i]);
   }
   return result;
+};
+
+const sort = async (array: Array<number>): Promise<Array<number>> => {
+  const promise = new Promise<Array<number>>((resolve) => {
+    setTimeout(() => {
+      const sorted = array.sort((a, b) => a - b);
+      resolve(sorted);
+    });
+  });
+
+  return promise;
 };
 
 export { solution };
