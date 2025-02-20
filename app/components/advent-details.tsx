@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import ProblemDetails from "@/components/problem-details";
-import TypeDetails from "@/components/solution-details/type-details";
-import { getCodeList } from "@/components/solution-details/actions";
+import TypeDetails from "@/components/type-details";
+import { getSolutions } from "@/text-content";
 import { getSolutionUrl } from "@/components/solution-link/actions";
 import LocationArrowIcon from "@public/images/location-arrow.svg";
 import DailyCalendarIcon from "@public/images/daily-calendar.svg";
@@ -16,7 +16,7 @@ export default async function AdventDetails({
   day: number,
   children: React.ReactNode,
 }>) {
-  const groups = await getCodeList(year);
+  const groups = await getSolutions(year);
   const group = groups.shift();
 
   const previousDay = day-1;

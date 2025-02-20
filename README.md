@@ -10,22 +10,24 @@ Repository for the app with solutions to the [Advent of Code](https://adventofco
 Solutions to the Advent of Code challenges are located in the folder `/app/solutions/` with the following structure:
 
 ```plaintext
-./app/solutions
-├── /2024                        # Each year will have its own folder
-    ├── /1                       # Each challenge day will have its own folder
-        ├── page.tsx             # (Required) The page component
-        ├── solution-part1.ts    # See solution code files section
-        ├── solution-part2.ts    # See solution code files section
-        ├── types.ts             # See type definition files section
-        ├── other files          # As required
+./📂app/📂solutions
+├─ /📂2024                    # Each year will have its own folder
+   ├─ /📂1                    # Each challenge day will have its own folder
+      ├─ 📄page.tsx           # (Required) The page component
+      ├─ 📄solution-part1.ts  # See special files section
+      ├─ 📄solution-part2.ts  # See special files section
+      ├─ 📄types.ts           # See special files section
+      ├─ 📄other files        # As required
 ```
 
-## Solution code files
+## Special files
+### Solution code files
 The solution code files are written in TypeScript and are located in the same folder as the page component. They are important as they are used in build scripts to generate the content for displaying code on the application.
 
 These code snippets are also used to derive the list of solutions displayed on the main page.
 
-### Naming convention
+#### ✅ Naming convention
+
 The solution code file should follow the format:
 
 ```
@@ -34,68 +36,67 @@ solution-part#.ts
 
 where `#` is the part number which the solution code file is for.
 
-### Content
+#### 📝 Content
 Solution code files are TypeScript files that export a function that returns the answer to the challenge. It can then be imported into the page component and subsequently called to retrieve the answer.
 
 It is recommended for the file to only include the main logic for solving the challenge.
 
 If there are any additional code needed by the solution code file, they can just be placed in a separate file and then imported.
 
-## Type definition files
+### Type definition files
 Like the solution code files, the type definition files are written in TypeScript and are also located in the same folder as the page component. They are also used in build scripts to generate the content for displaying type definitions on the application.
 
-### Naming convention
+#### ✅ Naming convention
 The type definition file should follow the format:
 
 ```
 types.ts
 ```
 
-### Content
+#### 📝 Content
 Type definition files are TypeScript files that export the different types/enums/interfaces used within the solution for each part of the challenge.
 
 It is recommended for the file to only include the types used in solving the challenge.
 
 ## Build script
-There are prebuild scripts in the project that copies these specific solution code and type definition files to the `/components/solution-details/code` folder. This is what allows the `SolutionDetails` and `TypeDetails` components to display their corresponding content. There is no need to manually copy the files over.
+There are prebuild scripts in the project that copies the special files of each solution from their corresponding `/app/solutions` folder. This is what allows various components like `SolutionDetails` and `TypeDetails` to display their corresponding content. There is no need to manually copy the files over.
 
-After the build script runs, the code snippets will be available in the `/components/solution-details/code` folder.
+After the build script runs, the files will be available in the `/app/text-content/files` folder.
 
 ```plaintext
-./app
-├── /solutions
-│   ├── /2024                                # Each folder will be copied
-│       ├── /1                               # Each folder will be copied
-│           ├── solution-part1.ts            # Copied and renamed
-│           ├── solution-part2.ts            # Copied and renamed
-│           ├── types.ts                     # Copied and renamed
-│           ├── other files                  # Not copied
-├── /components
-    ├── /solution-details
-        ├── /code
-            ├── /2024
-                ├── /1
-                    ├── solution-part1.txt
-                    ├── solution-part2.txt
-                    ├── types.txt
+./📂app
+├─ /📂solutions
+│  ├─ /📂2024                          # Each folder will be copied
+│      ├─ /📂1                         # Each folder will be copied
+│         ├─ 📄solution-part1.ts       # Copied and renamed
+│         ├─ 📄solution-part2.ts       # Copied and renamed
+│         ├─ 📄types.ts                # Copied and renamed
+│         ├─ 📄other files             # Not copied
+├─ /📂text-content
+   ├─ /📂files
+      ├─ /📂2024
+         ├─ /📂1
+            ├─ 📄solution-part1.txt
+            ├─ 📄solution-part2.txt
+            ├─ 📄types.txt
 ```
 
 ## Solutions list
-The list of solutions displayed on the main page is derived from the generated code snippets. The list is generated by reading the contents of the `/components/solution-details/code` folder.
+The list of solutions displayed on the main page is derived from the generated code snippets. The list is generated by reading the contents of the `/app/text-content/files` folder.
 
 Each folder represents a year, each subfolder represents a challenge day, and each `solution-part#.txt` file represents a star which serves as an indicator of the number of parts completed for that challenge.
 
 ## SolutionDetails component
-The [`SolutionDetails`](app/components/solution-details/index.tsx#L10) component is used to display the answer to a specific challenge as well as display a code snippet that was used to derive the answer. It looks for the code snippets for a particular challenge in the `/components/solution-details/code` folder.
+The [`SolutionDetails`](app/components/solution-details.tsx#L10) component is used to display the answer to a specific challenge as well as display a code snippet that was used to derive the answer. It looks for the code snippets for a particular challenge in the `/app/text-content/files` folder.
 
 > **NOTE:** When displaying the code, `import`, `export`, and type definition statements (`type`, `interface`, `enum`) are automatically stripped off.
 
 > **IMPORTANT:** The solution code files should not contain any sensitive information, as they will be displayed on the application.
 
 ## TypeDetails component
-The [`TypeDetails`](app/components/solution-details/type-details.tsx#L8) component is used to display the various types used when solving all parts of the challenge. It looks for a particular type definition file that corresponds to a particular challenge in the `/components/solution-details/code` folder.
+The [`TypeDetails`](app/components/type-details.tsx#L8) component is used to display the various types used when solving all parts of the challenge. It looks for a particular type definition file that corresponds to a particular challenge in the `/app/text-contents/files` folder.
 
-> **NOTE:** When displaying the code, `import` statements are automatically stripped off. The `export` keyword before each type definition statements (`type`, `interface`, `enum`) are also automatically stripped off if they exist.
+> **NOTE:** When displaying the types, `import` statements are automatically stripped off. The `export` keyword before each type definition statements (`type`, `interface`, `enum`) are also automatically stripped off if they exist.
 
 > **IMPORTANT:** The type definition files should not contain any sensitive information, as they will be displayed on the application.
 

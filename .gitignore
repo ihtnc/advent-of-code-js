@@ -42,4 +42,4 @@ yarn-error.log*
 next-env.d.ts
 
 # auto generated
-/app/components/solution-details/code
+/app/text-content/files

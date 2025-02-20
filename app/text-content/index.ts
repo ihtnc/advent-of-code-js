@@ -1,20 +1,20 @@
 import { promises as fs } from "fs";
 import path from 'path';
 
-const getCodeBasePath = (): string => {
-  return 'app/components/solution-details/code';
+const getContentBasePath = (): string => {
+  return 'app/text-content/files';
 };
 
-const getCodeFullPath = (year: string, day: string, part: string): string => {
-  const basePath = getCodeBasePath();
-  const fullPath = path.join(process.cwd(), basePath, year, day, `solution-part${part}.txt`);
+const getCodeFullPath = (year: number, day: number, part: number): string => {
+  const basePath = getContentBasePath();
+  const fullPath = path.join(process.cwd(), basePath, `${year}`, `${day}`, `solution-part${part}.txt`);
   return fullPath;
 };
 
 export async function getCode(year: number, day: number, part: number): Promise<string> {
   if(!year || !day || !part) { return ''; }
 
-  const codePath = getCodeFullPath(`${year}`, `${day}`, `${part}`);
+  const codePath = getCodeFullPath(year, day, part);
   const contents = await fs.readFile(codePath, 'utf8');
 
   // remove import/export/type definition codes
@@ -32,16 +32,16 @@ export async function getCode(year: number, day: number, part: number): Promise<
   return cleaned;
 };
 
-const getTypesFullPath = (year: string, day: string): string => {
-  const basePath = getCodeBasePath();
-  const fullPath = path.join(process.cwd(), basePath, year, day, `types.txt`);
+const getTypesFullPath = (year: number, day: number): string => {
+  const basePath = getContentBasePath();
+  const fullPath = path.join(process.cwd(), basePath, `${year}`, `${day}`, `types.txt`);
   return fullPath;
 };
 
 export async function getTypes(year: number, day: number): Promise<string> {
   if(!year || !day) { return ''; }
 
-  const codePath = getTypesFullPath(`${year}`, `${day}`);
+  const codePath = getTypesFullPath(year, day);
   const contents = await fs.readFile(codePath, 'utf8');
 
   // remove import definition codes
@@ -62,10 +62,10 @@ type Item = {
   parts: Array<number>,
 }
 
-export async function getCodeList(filterYear?: number) {
+export async function getSolutions(filterYear?: number) {
   const list: Array<Group> = [];
 
-  const basePath = getCodeBasePath();
+  const basePath = getContentBasePath();
   const years = await fs.readdir(basePath);
 
   for(const year of years) {
@@ -99,28 +99,16 @@ export async function getCodeList(filterYear?: number) {
   return list;
 };
 
-type Solution = {
-  year: number,
-  problems: Array<Problem>,
+const getInputFullPath = (year: number, day: number): string => {
+  const basePath = getContentBasePath();
+  const fullPath = path.join(process.cwd(), basePath, `${year}`, `${day}`, `input.txt`);
+  return fullPath;
 };
 
-type Problem = {
-  day: number,
-  stars: number,
-}
+export async function getInput(year: number, day: number): Promise<string> {
+  if (!year || !day) { return ''; }
 
-export async function getSolutions(): Promise<Array<Solution>> {
-  return getCodeList().then((list) =>
-    list.map((group) => {
-      return {
-        year: group.year,
-        problems: group.days.map((item) => {
-          return {
-            day: item.day,
-            stars: item.parts.length,
-          };
-        }),
-      };
-    })
-  );
-}
+  const inputPath = getInputFullPath(year, day);
+  const contents = await fs.readFile(inputPath, 'utf8');
+  return contents;
+};
