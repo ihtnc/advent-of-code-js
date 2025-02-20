@@ -13,7 +13,7 @@ export default async function User({
   const trimmed = session.length > 15 ? `${session.substring(0, 6)}...${session.substring(session.length - 6)}` : session;
 
   return (
-    <span  className={className}>
+    <span className={className}>
       <span className="flex gap-6 items-center justify-center text-sm h-6">
         <span className="flex gap-2 items-center" title={trimmed}>
           <Image

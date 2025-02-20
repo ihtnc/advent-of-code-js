@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAdventOfCodeUrl } from "@/actions/advent-of-code";
+import { cn } from "@/utilities";
 import GitHubIcon from "@public/images/github.svg";
 import SiteIcon from "@public/images/site-alt.svg";
 
@@ -12,7 +13,7 @@ export default function Footer({
   const url = getAdventOfCodeUrl();
 
   return (
-    <footer className={`${["flex gap-6 flex-wrap items-center justify-center pt-12", className].join(' ')}`}>
+    <footer className={cn("flex gap-6 flex-wrap items-center justify-center pt-12", className)}>
       <Link
         className="flex items-center gap-2 group"
         href="https://github.com/ihtnc/advent-of-code-js"

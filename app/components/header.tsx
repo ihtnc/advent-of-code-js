@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cn } from "@/utilities";
 
 export default function Header({
   className,
@@ -6,7 +7,7 @@ export default function Header({
   className?: string,
 }>) {
   return (
-    <header className={`${["flex flex-col gap-6 flex-wrap items-center justify-center", className].join(' ')}`}>
+    <header className={cn("flex flex-col gap-6 flex-wrap items-center justify-center", className)}>
       <Link href="/"
         className="text-2xl sm:text-3xl font-semibold uppercase"
       >

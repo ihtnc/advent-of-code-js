@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cn } from "@/utilities";
 import LoadingIcon from "@public/images/loading.svg";
 
 export default function Spinner({
@@ -15,7 +16,7 @@ export default function Spinner({
       aria-hidden
       src={LoadingIcon}
       alt="Loading icon"
-      className={`${["animate-spin dark:invert", className].join(' ')}`}
+      className={cn("animate-spin dark:invert", className)}
       width={width} height={height}
     />
   );

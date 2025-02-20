@@ -1,6 +1,7 @@
 'use client';
 
 import { useId, useState } from 'react';
+import { cn } from '@/utilities';
 
 export default function ExpandableContainer({
     label,
@@ -21,16 +22,19 @@ export default function ExpandableContainer({
   const [isExpanded, setIsExpanded] = useState(expanded);
 
   return (
-    <span className={`${["flex flex-col", className].join(' ')}`}>
+    <span className={cn("flex flex-col", className)}>
       <input id={id} className="peer/expand absolute scale-0" type="checkbox"
         checked={isExpanded}
         onChange={() => setIsExpanded(!isExpanded)}
       />
-      <label htmlFor={id} className={`${["w-fit", labelClassName].join(' ')}`}>
+      <label htmlFor={id} className={cn("w-fit", labelClassName)}>
         {label}
       </label>
 
-      <div className={`${["hidden opacity-0 transition-all duration-300 peer-checked/expand:flex peer-checked/expand:visible peer-checked/expand:opacity-100", childrenClassName].join(' ')}`}>
+      <div className={cn(
+        "hidden opacity-0 transition-all duration-300 peer-checked/expand:flex peer-checked/expand:visible peer-checked/expand:opacity-100",
+        childrenClassName
+      )}>
         {children}
       </div>
     </span>
