@@ -1,7 +1,7 @@
 'use server';
 
 import { AuthError } from 'next-auth';
-import { signOut, signIn } from '@auth';
+import { signIn } from '@auth';
 
 type FormState =
   | {
@@ -26,8 +26,4 @@ export async function login(
     }
     throw error;
   }
-};
-
-export async function logout() {
-  return await signOut({ redirectTo: '/' });
 };

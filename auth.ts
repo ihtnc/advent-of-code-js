@@ -8,7 +8,7 @@ export const { auth, signIn, signOut } = NextAuth({
     async authorize(credentials) {
       const session = `${credentials?.session}`;
       if (session) {
-        return { id: session };
+        return { adventOfCodeSession: session };
       } else {
         return null;
       }

@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { getSession } from '@/actions/session';
+import { signOut } from '@auth';
 import UserIcon from '@public/images/user.svg';
 import SignOutAltIcon from '@public/images/sign-out-alt.svg';
 
@@ -26,20 +26,22 @@ export default async function User({
           />
           Logged in
         </span>
-        <Link
-          href="/logout"
-          className="flex gap-2 items-center justify-center group"
-        >
-          <Image
-            aria-hidden
-            src={SignOutAltIcon}
-            alt="Logout icon"
-            width={16}
-            height={16}
-            className="group-hover:scale-125 dark:invert"
-          />
-          Sign out
-        </Link>
+        <form action={async () => {
+          'use server';
+          await signOut({ redirectTo: '/' });
+        }}>
+          <button className="group flex gap-2 items-center">
+            <Image
+              aria-hidden
+              src={SignOutAltIcon}
+              alt="Logout icon"
+              width={16}
+              height={16}
+              className="group-hover:scale-125 dark:invert"
+            />
+            Sign out
+          </button>
+        </form>
       </span>
     </span>
   );

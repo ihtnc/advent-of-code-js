@@ -12,12 +12,12 @@ export const authConfig = {
     },
     jwt({ token, user }) {
       if (user) {
-        token.session = user.id;
+        token.adventOfCodeSession = user.adventOfCodeSession;
       }
       return token;
     },
     session({ session, token }) {
-      session.adventOfCodeSession = `${token.session}`;
+      session.adventOfCodeSession = token.adventOfCodeSession;
       return session;
     }
   },
