@@ -1,4 +1,4 @@
-import type { IInputParser } from "@/actions/advent-of-code";
+import type { IInputParser } from '@/solutions/actions';
 import type { InputData } from "./types";
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
@@ -10,11 +10,15 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
       for (const line of lines) {
         if (!line) { continue; }
 
-        const values = line.split(/\s+/);
-        if (values.length === 0) { continue; }
-
         const levels: Array<number> = [];
-        values.forEach((level) => levels.push(Number(level)));
+        const regexp = new RegExp(/(?<level>\d+)/, 'g');
+
+        let match: RegExpExecArray | null;
+        while(match = regexp.exec(line)) {
+          const level = match.groups?.level;
+          if (!level) { continue; }
+          levels.push(Number(level));
+        };
 
         reports.push(levels);
       }

@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import ProblemDetails from "@/components/problem-details";
 import TypeDetails from "@/components/type-details";
-import { getSolutions } from "@/text-content";
-import { getSolutionUrl } from "@/components/solution-link/actions";
+import { getSolutions } from "@/actions/text-content";
+import { getSolutionUrl } from "@/solutions/actions";
 import LocationArrowIcon from "@public/images/location-arrow.svg";
 import DailyCalendarIcon from "@public/images/daily-calendar.svg";
 

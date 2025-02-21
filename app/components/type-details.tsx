@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ExpandableContainer from "@/components/expandable-container";
 import TypescriptCode from "@/components/code-snippet/typescript-code";
-import { getTypes } from "@/text-content";
+import { getTypes } from "@/actions/text-content";
 import FileCodeIcon from "@public/images/file-code.svg";
 import CodeSimpleIcon from "@public/images/code-simple.svg";
 

@@ -1,4 +1,4 @@
-import type { IInputParser } from "@/actions/advent-of-code";
+import type { IInputParser } from '@/solutions/actions';
 import type { InputData } from "./types";
 
 const inputParser: IInputParser<InputData> = async (input: string) => {
@@ -11,11 +11,13 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
       for (const line of lines) {
         if (!line) { continue; }
 
-        const numbers = line.split(/\s+/);
-        if (numbers.length !== 2) { continue; }
-
-        data1.push(Number(numbers[0]));
-        data2.push(Number(numbers[1]));
+        const ruleMatch = /^\s*(?<num1>\d+)\s+(?<num2>\d+)\s*$/g.exec(line);
+        if (ruleMatch) {
+          const num1 = ruleMatch.groups?.num1;
+          const num2 = ruleMatch.groups?.num2;
+          data1.push(Number(num1));
+          data2.push(Number(num2));
+        }
       }
 
       resolve({ data1, data2 });

@@ -2,7 +2,7 @@ import Image from "next/image";
 import User from "@/components/user";
 import ExpandableContainer from "@/components/expandable-container";
 import SolutionLink from "@/components/solution-link";
-import { getSolutions } from "@/actions/main";
+import { getSolutions } from "@/solutions/actions";
 import ChallengeIcon from "@public/images/challenge.svg";
 
 export default async function Home() {

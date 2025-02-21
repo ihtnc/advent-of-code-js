@@ -1,5 +1,4 @@
 import path from 'path';
-import { getSession } from "./session";
 
 export function getAdventOfCodeUrl(year?: number, day?: number): string {
   const baseUrl = new URL('https://adventofcode.com');
@@ -18,19 +17,10 @@ export function getAdventOfCodeUrl(year?: number, day?: number): string {
   return baseUrl.toString();
 };
 
-export function getAdventOfCodeInputUrl(year: number, day: number): string {
+function getAdventOfCodeInputUrl(year: number, day: number): string {
   const url = getAdventOfCodeUrl(year, day);
   return `${url}/input`;
 };
-
-export interface IInputParser<T> {
-  (input: string): Promise<T>;
-};
-
-export async function getInput<T>(year: number, day: number, parser?: IInputParser<T>): Promise<T> {
-  const input = await fetchChallengeInput(year, day);
-  return input && parser ? await parser(input) : (input as unknown as T);
-}
 
 const getAdventOfCodeHeaders = (session: string) => ({
   cookie: `session=${session}`,
@@ -45,17 +35,16 @@ const getAdventOfCodeNextConfig = (session: string) => {
   };
 };
 
-const fetchChallengeInput = async (year: number, day: number) => {
-  const session = await getSession();
+export async function getInput(session: string, year: number, day: number) {
   const url = getAdventOfCodeInputUrl(year, day);
-  const response = await fetchExternalText(url, {
+  const response = await fetchText(url, {
     headers: getAdventOfCodeHeaders(session),
     next: getAdventOfCodeNextConfig(session),
   });
   return response;
 }
 
-const fetchExternalText = async (url: string, options?: RequestInit): Promise<string> => {
+const fetchText = async (url: string, options?: RequestInit): Promise<string> => {
   const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error(`Failed to fetch: ${response.statusText}`);

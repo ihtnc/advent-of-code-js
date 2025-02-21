@@ -1,4 +1,4 @@
-import type { IInputParser } from "@/actions/advent-of-code";
+import type { IInputParser } from '@/solutions/actions';
 import type { InputData, Rules } from "./types";
 
 const inputParser: IInputParser<InputData> = async (input: string) => {

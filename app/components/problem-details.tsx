@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getAdventOfCodeUrl, getAdventOfCodeInputUrl } from "@/actions/advent-of-code";
+import { getAdventOfCodeUrl } from "@/actions/advent-of-code";
+import { getSolutionInputUrl } from "@/solutions/actions";
 import ChallengeIcon from "@public/images/challenge.svg";
 import DocumentIcon from "@public/images/document.svg";
 
@@ -13,7 +14,7 @@ export default function ProblemDetails({
 }>) {
   const yearUrl = getAdventOfCodeUrl(year);
   const dayUrl = getAdventOfCodeUrl(year, day);
-  const inputUrl = getAdventOfCodeInputUrl(year, day);
+  const inputUrl = getSolutionInputUrl(year, day);
 
   return (
     <>

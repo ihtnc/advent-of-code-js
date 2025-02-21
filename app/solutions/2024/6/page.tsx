@@ -1,4 +1,4 @@
-import { getInput } from "@/actions/advent-of-code";
+import { getChallengeInput } from "@/solutions/actions";
 import AdventDetails from "@/components/advent-details";
 import SolutionDetails from "@/components/solution-details";
 import Solution from "./solution";
@@ -7,7 +7,7 @@ import { inputParser } from "./input-parser";
 export default async function Page() {
   const year = 2024;
   const day = 6;
-  const input = await getInput(year, day, inputParser);
+  const input = await getChallengeInput(year, day, inputParser);
 
   return (
     <AdventDetails year={year} day={day}>

@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import path from 'path';
 
 const getContentBasePath = (): string => {
-  return 'app/text-content/files';
+  return 'app/actions/text-content/files';
 };
 
 const getCodeFullPath = (year: number, day: number, part: number): string => {
