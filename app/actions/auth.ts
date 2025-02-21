@@ -14,6 +14,10 @@ export async function login(
   formData: FormData,
 ) {
   try {
+    if (!formData.get('session')) {
+      return { message: 'Session is required.' };
+    }
+
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {

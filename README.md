@@ -6,6 +6,13 @@ See it [live](https://advent-of-code-js.vercel.app/)!
 
 Repository for the app with solutions to the [Advent of Code](https://adventofcode.com/) challenges.
 
+## Application
+The app displays the solutions to the various Advent of Code challenges. It uses a set of sample inputs to derive the answers to the challenges. These inputs are taken from the illustrations on the challenge description itself.
+
+The application also displays the solution to that challenge in a code snippet format, as well as the various type definitions used in the code.
+
+There is also an option to sign in with the Advent of Code session to fetch the actual challenge input associated to that session instead of the sample inputs. This is useful for verifying the accuracy of the solution.
+
 ## Folder structure
 Solutions to the Advent of Code challenges are located in the folder `/app/solutions/` with the following structure:
 
@@ -13,10 +20,11 @@ Solutions to the Advent of Code challenges are located in the folder `/app/solut
 ./📂app/📂solutions
 ├─ /📂2024                    # Each year will have its own folder
    ├─ /📂1                    # Each challenge day will have its own folder
-      ├─ 📄page.tsx           # (Required) The page component
+      ├─ 📄page.tsx           # The page component
       ├─ 📄solution-part1.ts  # See special files section
       ├─ 📄solution-part2.ts  # See special files section
       ├─ 📄types.ts           # See special files section
+      ├─ 📄input.txt          # See special files section
       ├─ 📄other files        # As required
 ```
 
@@ -58,6 +66,21 @@ Type definition files are TypeScript files that export the different types/enums
 
 It is recommended for the file to only include the types used in solving the challenge.
 
+### Sample input files
+The sample input files are plain text files that contain a valid input for a particular challenge. They are also located in the same folder as the page component and are used in build scripts to generate the content for displaying sample inputs on the application.
+
+> **NOTE:** The sample input files are not used in the solution when a valid Advent of Code session has been signed in. The actual challenge input associated to the session will be used instead.
+
+#### ✅ Naming convention
+The sample input file should follow the format:
+
+```
+input.txt
+```
+
+#### 📝 Content
+The content of the sample input file should be a valid input for the challenge. The input can be taken from the challenge description itself as there is often a sample input in the description to better illustrate the challenge. They contain a small set of data and are commonly used to verify the accuracy of the solution as it is being written.
+
 ## Build script
 There are prebuild scripts in the project that copies the special files of each solution from their corresponding `/app/solutions` folder. This is what allows various components like `SolutionDetails` and `TypeDetails` to display their corresponding content. There is no need to manually copy the files over.
 
@@ -71,6 +94,7 @@ After the build script runs, the files will be available in the `/app/actions/te
 │        ├─ 📄solution-part1.ts        # Copied and renamed
 │        ├─ 📄solution-part2.ts        # Copied and renamed
 │        ├─ 📄types.ts                 # Copied and renamed
+│        ├─ 📄input.txt                # Copied and renamed
 │        ├─ 📄other files              # Not copied
 ├─ /📂actions/📂text-content/📂files
    ├─ /📂2024
@@ -78,6 +102,7 @@ After the build script runs, the files will be available in the `/app/actions/te
          ├─ 📄solution-part1.txt
          ├─ 📄solution-part2.txt
          ├─ 📄types.txt
+         ├─ 📄input.txt
 ```
 
 ## Solutions list

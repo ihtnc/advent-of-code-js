@@ -5,10 +5,8 @@ export const authConfig = {
     signIn: '/login',
   },
   callbacks: {
-    authorized({ auth }) {
-      const isLoggedIn = !!auth?.user;
-      if (isLoggedIn) { return true; }
-      else { return false; }
+    authorized({ }) {
+      return true;
     },
     jwt({ token, user }) {
       if (user) {
