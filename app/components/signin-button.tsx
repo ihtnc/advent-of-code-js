@@ -43,7 +43,7 @@ export default function SignInButton() {
               : <Image
                   aria-hidden
                   src={SignInAltIcon}
-                  alt="Login icon"
+                  alt="Button icon"
                   width={32}
                   height={32}
                   className="hover:scale-125 dark:invert"

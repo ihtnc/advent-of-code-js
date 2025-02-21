@@ -1,29 +1,9 @@
 import Image from 'next/image';
 import { getSession } from '@/actions/session';
-import { signOut } from '@auth';
 import SignInButton from '@/components/signin-button';
+import SignOutButton from '@/components/signout-button';
 import UserIcon from '@public/images/user.svg';
 import UserLockIcon from '@public/images/user-lock.svg';
-import ExitIcon from '@public/images/exit.svg';
-
-const SignOutButton = () => (
-  <form action={async () => {
-    'use server';
-    await signOut({ redirectTo: '/' });
-  }}>
-    <button className="group flex gap-2 items-center">
-      <Image
-        aria-hidden
-        src={ExitIcon}
-        alt="Sign out icon"
-        width={16}
-        height={16}
-        className="group-hover:scale-125 dark:invert"
-      />
-      Sign out
-    </button>
-  </form>
-);
 
 export default async function User({
   className,
