@@ -23,7 +23,7 @@ export async function login(
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { message: 'Invalid credentials.' };
+          return { message: 'Invalid session.' };
         default:
           return { message: 'Something went wrong.' };
       }
