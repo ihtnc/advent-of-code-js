@@ -13,14 +13,14 @@ export default function YearTemplate({
       <User className="pb-6" />
 
       <Link
-        className="flex self-start gap-2 text-md text-left sm:text-lg group"
+        className="flex self-start gap-2 text-left text-lg group"
         href="/"
       >
         <Image
           aria-hidden
           src={LocationArrowIcon}
           alt="Back icon"
-          className="-rotate-[135deg] group-hover:scale-125  dark:invert"
+          className="-rotate-135 group-hover:scale-125  dark:invert"
           width={16}
           height={16}
         />

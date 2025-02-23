@@ -7,7 +7,7 @@ import Modal from "@/components/modal";
 import Spinner from "@/components/spinner";
 import { performSignOut } from "./actions";
 import ExitIcon from "@public/images/exit.svg";
-import SignInAltIcon from "@public/images/sign-in-alt.svg";
+import AngleSmallRightIcon from "@public/images/angle-small-right.svg";
 
 export default function SignOutButton() {
   const [show, setShow] = useState(false);
@@ -27,19 +27,20 @@ export default function SignOutButton() {
 
   const signOutForm = () => {
     return (
-      <Modal title="Sign out" onClose={closeForm} show={show}>
+      <Modal title="Sign out" onClose={closeForm} show={show} className="gap-6">
         <span className="flex text-sm text-gray-500 dark:text-gray-400 text-center justify-center w-full">
           Removing your Advent of Code session<br />
           will use the sample input instead.
         </span>
-        <form action={action} className="flex gap-2 pt-6 pb-12 items-center justify-center h-6 text-md sm:text-lg">
-          <button disabled={pending} className="group flex gap-2 items-center">
-            Proceed
+        <form action={action} className="flex gap-2 py-6 items-center justify-center h-6 text-lg">
+          <button disabled={pending}
+            className="group flex items-center rounded-md border border-black dark:border-white pr-2 pl-4 py-1 hover:pr-3 hover:pl-5 hover:py-2 hover:-my-1 cursor-pointer">
+            Remove
             {(pending
-              ? <Spinner width={32} height={32} />
+              ? <Spinner width={24} height={24} className="m-1"/>
               : <Image
                   aria-hidden
-                  src={SignInAltIcon}
+                  src={AngleSmallRightIcon}
                   alt="Button icon"
                   width={32}
                   height={32}
@@ -55,7 +56,7 @@ export default function SignOutButton() {
   return (
     <>
       <button
-        className="group flex gap-2 items-center"
+        className="group flex gap-2 items-center cursor-pointer"
         onClick={() => showForm()}>
         <Image
           aria-hidden

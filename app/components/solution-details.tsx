@@ -33,7 +33,7 @@ export default async function SolutionDetails({
   };
 
   const label = (
-    <span className="flex text-xl sm:text-2xl self-start place-items-center gap-4 group">
+    <span className="flex text-2xl self-start place-items-center gap-4 group">
       <Image
         aria-hidden
         src={StarIcon}

@@ -41,7 +41,7 @@ export default async function AdventDetails({
               aria-hidden
               src={LocationArrowIcon}
               alt="Previous icon"
-              className="-rotate-[135deg] group-hover:scale-125 dark:invert"
+              className="-rotate-135 group-hover:scale-125 dark:invert"
               width={32}
               height={32}
             />
@@ -72,7 +72,7 @@ export default async function AdventDetails({
               aria-hidden
               src={LocationArrowIcon}
               alt="Previous icon"
-              className="rotate-[45deg] group-hover:scale-125 dark:invert"
+              className="rotate-45 group-hover:scale-125 dark:invert"
               width={32}
               height={32}
             />

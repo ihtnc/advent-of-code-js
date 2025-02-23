@@ -9,7 +9,7 @@ export default function Header({
   return (
     <header className={cn("flex flex-col gap-6 flex-wrap items-center justify-center", className)}>
       <Link href="/"
-        className="text-2xl sm:text-3xl font-semibold uppercase"
+        className="text-3xl font-semibold uppercase"
       >
         Advent of Code
       </Link>

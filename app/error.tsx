@@ -13,7 +13,7 @@ export default function Error({
 }) {
   return (
     <section className="flex flex-col gap-16 place-items-center pt-24">
-      <h1 className="flex text-xl sm:text-2xl gap-2">
+      <h1 className="flex text-2xl gap-2">
         <Image
           aria-hidden
           src={NotFoundIcon}

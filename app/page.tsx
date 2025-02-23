@@ -13,16 +13,16 @@ export default async function Home() {
     <section className="flex flex-col gap-6">
       <User className="pb-6" />
 
-      <h1 className="text-md text-center sm:text-left sm:text-lg">
+      <h1 className="text-center sm:text-left text-lg">
         Solutions for the Advent of Code challenges.
       </h1>
 
-      <ul className="text-md list-inside list-none sm:text-lg text-center sm:text-left">
+      <ul className="list-inside list-none text-lg text-center sm:text-left w-sm">
         {solutions.map(({ year, problems }) => (
           <li key={year} className="mb-2 w-full">
             <ExpandableContainer
               className="place-items-center md:place-items-start gap-2"
-              labelClassName="cursor-pointer text-xl text-center sm:text-2xl sm:text-left max-w-fit"
+              labelClassName="cursor-pointer text-center text-2xl sm:text-left max-w-fit"
               label={(
                 <span className="flex gap-2 group">
                   <Image
@@ -38,7 +38,7 @@ export default async function Home() {
               expanded={year === latestYear}
             >
 
-              <ul className="place-items-center grid-flow-row md:place-items-start md:grid md:grid-flow-col md:grid-rows-10 gap-y-1 gap-x-8 pl-8">
+              <ul className="grid grid-flow-col grid-rows-13 md:grid-rows-10 gap-y-1 gap-x-6 md:pl-8">
                 {problems.map((problem) => (
                   <li key={problem.day}>
                     <SolutionLink day={problem.day} year={year} stars={problem.stars} />

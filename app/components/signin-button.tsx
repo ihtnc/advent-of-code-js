@@ -7,7 +7,7 @@ import { login } from "@/actions/auth";
 import Spinner from "@/components/spinner";
 import Modal from "@/components/modal";
 import EnterIcon from '@public/images/enter.svg';
-import SignInAltIcon from '@public/images/sign-in-alt.svg';
+import AngleSmallRightIcon from '@public/images/angle-small-right.svg';
 
 export default function SignInButton() {
   const [show, setShow] = useState(false);
@@ -25,33 +25,35 @@ export default function SignInButton() {
 
   const signInForm = () => {
     return (
-      <Modal title="Sign in" onClose={closeForm} show={show}>
+      <Modal title="Sign in" onClose={closeForm} show={show} className="gap-6">
         <span className="flex text-sm text-gray-500 dark:text-gray-400 text-center justify-center w-full">
           Enter your Advent of Code session<br />
           to use the input provided to your account.
         </span>
-        <form action={action} className="flex gap-2 pt-6 pb-12 items-center justify-center h-6 text-md sm:text-lg">
+        <form action={action} className="flex flex-col items-center justify-center text-lg gap-6">
           <input id="session" name="session" type="text" placeholder="Advent of Code session" autoFocus
             className="caret-black dark:caret-white w-80 dark:bg-black text-center border border-gray-300 rounded-md"
             disabled={pending}
           />
+          {state?.message && <span className="flex place-self-center text-red-500 text-sm h-6 -my-6">{state.message}</span>}
           <input type="hidden" name="redirectTo" value={pathname} />
 
-          <button disabled={pending}>
+          <button disabled={pending}
+            className="group flex items-center rounded-md border border-black dark:border-white pr-2 pl-4 py-1 hover:pr-3 hover:pl-5 hover:py-2 hover:-my-1 cursor-pointer">
+            Enter
             {(pending
-              ? <Spinner width={32} height={32} />
+              ? <Spinner width={24} height={24} className="m-1" />
               : <Image
                   aria-hidden
-                  src={SignInAltIcon}
+                  src={AngleSmallRightIcon}
                   alt="Button icon"
                   width={32}
                   height={32}
-                  className="hover:scale-125 dark:invert"
+                  className="group-hover:scale-125 dark:invert"
                 />
             )}
           </button>
         </form>
-        {state?.message && <span className="flex place-self-center text-red-500 text-sm -mt-12 h-8">{state.message}</span>}
       </Modal>
     );
   }
@@ -59,7 +61,7 @@ export default function SignInButton() {
   return (
     <>
       <button
-        className="group flex gap-2 items-center"
+        className="group flex gap-2 items-center cursor-pointer"
         onClick={() => showForm()}
       >
         <Image

@@ -69,7 +69,8 @@ It is recommended for the file to only include the types used in solving the cha
 ### Sample input files
 The sample input files are plain text files that contain a valid input for a particular challenge. They are also located in the same folder as the page component and are used in build scripts to generate the content for displaying sample inputs on the application.
 
-> **NOTE:** The sample input files are not used in the solution when a valid Advent of Code session has been signed in. The actual challenge input associated to the session will be used instead.
+> [!NOTE]
+> The sample input files are not used in the solution when a valid Advent of Code session has been signed in. The actual challenge input associated to the session will be used instead.
 
 #### ✅ Naming convention
 The sample input file should follow the format:
@@ -94,7 +95,7 @@ After the build script runs, the files will be available in the `/app/actions/te
 │        ├─ 📄solution-part1.ts        # Copied and renamed
 │        ├─ 📄solution-part2.ts        # Copied and renamed
 │        ├─ 📄types.ts                 # Copied and renamed
-│        ├─ 📄input.txt                # Copied and renamed
+│        ├─ 📄input.txt                # Copied
 │        ├─ 📄other files              # Not copied
 ├─ /📂actions/📂text-content/📂files
    ├─ /📂2024
@@ -113,16 +114,20 @@ Each folder represents a year, each subfolder represents a challenge day, and ea
 ## SolutionDetails component
 The [`SolutionDetails`](app/components/solution-details.tsx#L10) component is used to display the answer to a specific challenge as well as display a code snippet that was used to derive the answer. It looks for the code snippets for a particular challenge in the `/app/actions/text-content/files` folder.
 
-> **NOTE:** When displaying the code, `import`, `export`, and type definition statements (`type`, `interface`, `enum`) are automatically stripped off.
+> [!NOTE]
+> When displaying the code, `import`, `export`, and type definition statements (`type`, `interface`, `enum`) are automatically stripped off.
 
-> **IMPORTANT:** The solution code files should not contain any sensitive information, as they will be displayed on the application.
+> [!WARNING]
+> The solution code files should not contain any sensitive information, as they will be displayed on the application.
 
 ## TypeDetails component
 The [`TypeDetails`](app/components/type-details.tsx#L8) component is used to display the various types used when solving all parts of the challenge. It looks for a particular type definition file that corresponds to a particular challenge in the `/app/actions/text-contents/files` folder.
 
-> **NOTE:** When displaying the types, `import` statements are automatically stripped off. The `export` keyword before each type definition statements (`type`, `interface`, `enum`) are also automatically stripped off if they exist.
+> [!NOTE]
+> When displaying the types, `import` statements are automatically stripped off. The `export` keyword before each type definition statements (`type`, `interface`, `enum`) are also automatically stripped off if they exist.
 
-> **IMPORTANT:** The type definition files should not contain any sensitive information, as they will be displayed on the application.
+> [!WARNING]
+> The type definition files should not contain any sensitive information, as they will be displayed on the application.
 
 ## Debugging
 1. Start the application with server debugging enabled by running `npm run debug`.
@@ -134,8 +139,7 @@ The [`TypeDetails`](app/components/type-details.tsx#L8) component is used to dis
 If the `inspect` link is not available, click the `Configure...` button on the `chrome://inspect` page then add the server address. The details can be found on the console output when the server starts. Look for the text `"the Next.js router server should be inspected at [port]"`.
 
 ## Advent of Code session
-
-The application requires a valid session value to be able to fetch the challenge data from the Advent of Code website.
+The application requires a valid session value to be able to fetch the associated input from the Advent of Code website.
 
 To get the session value:
 1. Navigate to the [Advent of Code](https://adventofcode.com/) website.
