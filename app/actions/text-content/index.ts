@@ -23,11 +23,13 @@ export async function getCode(year: number, day: number, part: number): Promise<
   const typeRegex = /^type[^=]+=[^;]+;\s*/gm;
   const enumRegex = /^enum[^;]+;\s*/gm;
   const interfaceRegex = /^interface[^;]+;\s*/gm;
+  const eslintRegex = /^\/\*\s*eslint.*\*\/\s*/gm;
   const cleaned = contents.replace(importRegex, '')
     .replace(exportRegex, '')
     .replace(typeRegex, '')
     .replace(interfaceRegex, '')
-    .replace(enumRegex, '');
+    .replace(enumRegex, '')
+    .replace(eslintRegex, '');
 
   return cleaned;
 };
@@ -47,8 +49,10 @@ export async function getTypes(year: number, day: number): Promise<string> {
   // remove import definition codes
   const importRegex = /^import[\w{}\s,]+from[^;]+;\s*/gm
   const exportRegex = /^export\s+(?=type|enum|interface)/gm
+  const eslintRegex = /^\/\*\s*eslint.*\*\/\s*/gm;
   const cleaned = contents.replace(importRegex, '')
-    .replace(exportRegex, '');
+    .replace(exportRegex, '')
+    .replace(eslintRegex, '');
   return cleaned;
 };
 
