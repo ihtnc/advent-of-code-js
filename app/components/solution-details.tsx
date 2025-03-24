@@ -61,7 +61,7 @@ export default async function SolutionDetails({
   );
 
   return (
-    <span className="gap-6">
+    <span className="gap-6 md:w-3/4 xl:w-2/3 2xl:w-3/5 md:mx-auto">
       <ExpandableContainer label={label} labelClassName="cursor-pointer" childrenClassName="place-content-center">
         <TypescriptCode code={code} className="text-sm md:ml-16 w-full" />
       </ExpandableContainer>

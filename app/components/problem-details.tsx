@@ -18,7 +18,7 @@ export default function ProblemDetails({
 
   return (
     <>
-      <h1 className="flex self-start place-items-center text-2xl gap-4">
+      <h1 className="flex self-start place-items-center text-2xl gap-4 md:w-3/4 xl:w-2/3 2xl:w-3/5 md:mx-auto">
         <Image
           aria-hidden
           src={ChallengeIcon}

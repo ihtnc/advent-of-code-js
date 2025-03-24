@@ -8,7 +8,7 @@ export default function Main({
     className?: string,
   }>) {
   return (
-    <main className={cn("flex gap-8 place-content-center w-full xl:w-1/3 lg:w-1/2 sm:w-3/4", className)}>
+    <main className={cn("flex gap-8 place-content-center w-full 2xl:w-1/2 xl:w-3/5 lg:w-2/3 sm:w-3/4", className)}>
       {children}
     </main>
   );
