@@ -16,7 +16,7 @@ export default async function SolutionDetails({
   year: number,
   day: number,
   part: number,
-  answer: (() => Promise<number | bigint>) | React.ReactNode,
+  answer: (() => Promise<number | bigint | string>) | React.ReactNode,
 }>) {
   const code = await getCode(year, day, part);
 
