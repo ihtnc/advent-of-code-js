@@ -13,7 +13,10 @@ export default async function Page() {
   const input = await getChallengeInput(year, day, inputParser);
 
   const session = await getSession();
-  const mapSize1: Size = session ? { width: 101, height: 103 } : { width: 11, height: 7 };
+  const width = session ? 101 : 11;
+  const height = session ? 103 : 7;
+
+  const mapSize1: Size = { width, height };
   const mapSize2: Size | undefined = session ? mapSize1 : undefined;
 
   return (
@@ -21,18 +24,32 @@ export default async function Page() {
       <SolutionDetails year={year} day={day} part={1} answer={<Solution part={1} input={input} mapSize={mapSize1} />} />
       <SolutionDetails year={year} day={day} part={2} answer={<Solution part={2} input={input} mapSize={mapSize2} />} />
       <Info>
-        Since the map size can&apos;t be determined from the input, the result may differ from expected.
-        This solution uses a
-        <b><code className="text-black dark:text-white">&nbsp;11x7 map&nbsp;</code></b>
-        for the sample input, and a
-        <b><code className="text-black dark:text-white">&nbsp;101x103 map&nbsp;</code></b>
-        for your input.
+        {renderInfoText1(width, height)}
         <br /><br />
-        Also, part 2 of the solution has no applicable answer when using the sample input.
-        And it is looking for a
-        <b><code className="text-black dark:text-white">&nbsp;31x33 Christmas tree&nbsp;</code></b>
-        pattern when using your input.
+        {renderInfoText2(session)}
       </Info>
     </AdventDetails>
   );
+};
+
+const renderInfoText1 = (width: number, height: number) => {
+  return (<>
+    Since the map size can&apos;t be determined from the input, the result may differ from expected.
+    This solution uses a
+    <b><code className="text-black dark:text-white">&nbsp;{width}x{height} map</code></b>.
+  </>);
+};
+
+const renderInfoText2 = (session: string) => {
+  if (!session) {
+    return (<>
+      Also, part 2 of the solution has no applicable answer.
+    </>);
+  }
+
+  return (<>
+    Also, part 2 of the solution is looking for a
+    <b><code className="text-black dark:text-white">&nbsp;31x33 Christmas tree&nbsp;</code></b>
+    pattern.
+  </>);
 };
