@@ -1,5 +1,6 @@
-import { calculate, copyMap, getNext, isBox, isValidCoordinate, moveRobot, canPush as canPushSingle, moveBox as moveBoxSingle } from './solution-part1';
+import { calculate, getNext, isBox, moveRobot, canPush as canPushSingle, moveBox as moveBoxSingle } from './solution-part1';
 import { type InputData, type Coordinates, Direction, SymbolType } from './types';
+import { copyMap, isValidCoordinate } from './utilities';
 
 type Fn = ({ map, initial, instructions }: InputData) => Promise<number>;
 
@@ -42,8 +43,9 @@ const canPush: PushFn = (initial, direction, map) => {
     return canPushSingle(initial, direction, map);
   }
 
-  // check part 1 for isValidCoordinate and isBox definition
   if (!isValidCoordinate(initial, map)) { return false; }
+
+  // check part 1 for isBox definition
   if (!isBox(initial, map)) { return false; }
 
   const { x, y } = initial;
@@ -82,8 +84,9 @@ const moveBox: MoveFn = (initial, direction, map) => {
     return moveBoxSingle(initial, direction, map);
   }
 
-  // check part 1 for isValidCoordinate and isBox definition
   if (!isValidCoordinate(initial, map)) { return false; }
+
+  // check part 1 for isBox definition
   if (!isBox(initial, map)) { return false; }
 
   const { x, y } = initial;
@@ -143,7 +146,6 @@ const moveBox: MoveFn = (initial, direction, map) => {
 type ExpandFn = (map: Array<Array<SymbolType>>, initial: Coordinates) => { map: Array<Array<SymbolType>>, initial: Coordinates };
 
 const expand: ExpandFn = (map, initial) => {
-  // check part 1 for copyMap definition
   const copy = copyMap(map);
   const expanded: Array<Array<SymbolType>> = [];
 

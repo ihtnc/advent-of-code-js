@@ -1,12 +1,12 @@
-import { copy, setNextState } from './solution-part1';
+import { setNextState } from './solution-part1';
 import type { InputData, Robot, Size } from './types';
+import { copy } from './utilities';
 
 type Fn = ({ robots }: InputData, mapSize: Size) => Promise<number>;
 
 const solution: Fn = async ({ robots: data }, mapSize) => {
   const promise = new Promise<number>((resolve, reject) => {
     setTimeout(() => {
-      // check part 1 for copy definition
       const robots = copy(data);
       let iteration: number = 0;
 
@@ -127,25 +127,5 @@ const pattern = [
   "X.............................X",
   "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 ];
-
-type PrintFn = (iteration: number, robots: Array<Robot>, mapSize: Size) => void;
-
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-const print: PrintFn = (iteration, robots, mapSize) => {
-  const map = plotRobots(robots, mapSize);
-
-  console.log('==============================');
-  console.log(`Iteration: ${iteration}`);
-  for (let y = 0; y < mapSize.height; y++) {
-    let line = '';
-    for (let x = 0; x < mapSize.width; x++) {
-      line += map[y] && map[y][x] ? map[y][x] : '.';
-    }
-
-    console.log(line);
-  }
-  console.log(`Iteration: ${iteration}`);
-  console.log('==============================');
-};
 
 export { solution };

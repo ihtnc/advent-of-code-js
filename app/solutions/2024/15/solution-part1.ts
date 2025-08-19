@@ -1,4 +1,5 @@
 import { type InputData, type Coordinates, Direction, SymbolType } from './types';
+import { copyMap, isValidCoordinate } from './utilities';
 
 type Fn = ({ map, initial, instructions }: InputData) => Promise<number>;
 
@@ -55,15 +56,6 @@ const canPush: PushFn = (initial, direction, map) => {
   const { x: nextX, y: nextY } = next;
   return map[nextY][nextX] === SymbolType.EMPTY;
 };
-
-type ValidateFn = (initial: Coordinates, map: Array<Array<SymbolType>>) => boolean;
-
-const isValidCoordinate: ValidateFn = (initial, map) => {
-  const { x, y } = initial;
-  if (y < 0 || y >= map.length) { return false; }
-  if (x < 0 || x >= map[y].length) { return false; }
-  return true;
-}
 
 type GetNextFn = (initial: Coordinates, direction: Direction, map: Array<Array<SymbolType>>) => Coordinates | null;
 
@@ -159,10 +151,4 @@ const calculate: CalculateFn = (map) => {
   return total;
 };
 
-type CopyFn = (map: Array<Array<SymbolType>>) => Array<Array<SymbolType>>;
-
-const copyMap: CopyFn = (map) => {
-  return map.map((row) => row.slice());
-};
-
-export { solution, isBox, canPush, isValidCoordinate, getNext, copyMap, moveBox, moveRobot, calculate };
+export { solution, isBox, canPush, getNext, moveBox, moveRobot, calculate };

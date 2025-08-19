@@ -1,4 +1,5 @@
 import type { Coordinates, InputData, Map } from './types';
+import { isWithinBounds, removeDuplicates } from './utilities';
 
 type Fn = ({ map, antennae }: InputData) => Promise<number>;
 
@@ -88,28 +89,4 @@ const getAntiNodes: GetFn = (map: Map, source, pair, getAll) => {
   return nodes;
 }
 
-type CheckFn = (map: Map, coordinate: Coordinates) => boolean;
-
-const isWithinBounds: CheckFn = (map, coordinate) => {
-  return coordinate.x >= 0 && coordinate.x < map.cols
-      && coordinate.y >= 0 && coordinate.y < map.rows;
-};
-
-type RemoveFn = (nodes: Array<Coordinates>) => Array<Coordinates>;
-
-const removeDuplicates: RemoveFn = (nodes) => {
-  const keys = new Set<string>();
-  const unique: Array<Coordinates> = [];
-
-  for (const node of nodes) {
-    const key = `${node.x},${node.y}`;
-    if (keys.has(key)) { continue; }
-
-    keys.add(key);
-    unique.push(node);
-  }
-
-  return unique;
-};
-
-export { solution, searchAntenna, getAntiNodes, removeDuplicates };
+export { solution, searchAntenna, getAntiNodes };

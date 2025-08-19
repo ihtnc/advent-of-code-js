@@ -1,5 +1,6 @@
 import { Marker, PathType, type Path, type InputData, type Move } from './types';
 import { getNextMove, traverse } from './solution-part1';
+import { copyMap } from './utilities';
 
 type Fn = ({ map, guard }: InputData) => Promise<number>;
 
@@ -54,16 +55,5 @@ const solution: Fn = async ({ map, guard }) => {
   await Promise.all(tasks);
   return loopCount;
 };
-
-type CopyFn = (map: Array<Array<Marker>>) => Array<Array<Marker>>;
-
-const copyMap: CopyFn = (map) => {
-  const newMap: Array<Array<Marker>> = [];
-  for (const row of map) {
-    newMap.push([...row]);
-  }
-
-  return newMap;
-}
 
 export { solution };

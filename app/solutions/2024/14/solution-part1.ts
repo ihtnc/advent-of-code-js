@@ -1,4 +1,5 @@
 import type { Robot, InputData, Size } from './types';
+import { copy } from './utilities';
 
 type Fn = ({ robots }: InputData, mapSize: Size) => Promise<number>;
 
@@ -105,19 +106,4 @@ const getQuadrant: getFn = (robots, mapSize, quadrant) => {
   return quad;
 };
 
-type CopyFn = (robots: Array<Robot>) => Array<Robot>;
-
-const copy: CopyFn = (robots) => {
-  const copy = [];
-  for (const robot of robots) {
-    const { velocity, position } = robot;
-    copy.push({
-      velocity: { ...velocity },
-      position: { ...position },
-    });
-  }
-
-  return copy;
-};
-
-export { solution, setNextState, copy };
+export { solution, setNextState };

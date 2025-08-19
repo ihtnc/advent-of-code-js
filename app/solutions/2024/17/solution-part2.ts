@@ -66,7 +66,7 @@ const findMatchingRegisterAValue: FindMatch = (
     const input: InputData = {
       a: Number(value), b, c, instructions,
     };
-    const result = getOutput(input);
+    const result = getFinalState(input);
     const outputIndex = result.output.length - outputIndexOffset;
     const actual = result.output[outputIndex];
 
@@ -93,9 +93,9 @@ const findMatchingRegisterAValue: FindMatch = (
   return null;
 };
 
-type GetOutputFn = ({ a, b, c, instructions }: InputData) => State;
+type GetStateFn = ({ a, b, c, instructions }: InputData) => State;
 
-const getOutput: GetOutputFn = ({ a, b, c, instructions }) => {
+const getFinalState: GetStateFn = ({ a, b, c, instructions }) => {
   const state: State = {
     a,
     b,

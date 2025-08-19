@@ -1,5 +1,6 @@
 import type { Coordinates, InputData } from './types';
-import { type SearchPairsFn, getAntiNodes, removeDuplicates, searchAntenna } from './solution-part1';
+import { type SearchPairsFn, getAntiNodes, searchAntenna } from './solution-part1';
+import { removeDuplicates } from './utilities';
 
 type Fn = ({ map, antennae }: InputData) => Promise<number>;
 
@@ -20,7 +21,6 @@ const solution: Fn = async ({ map, antennae }) => {
   }
   await Promise.all(tasks);
 
-  // check part 1 for removeDuplicates definition
   const unique = removeDuplicates(nodes);
   return unique.length;
 };
