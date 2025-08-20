@@ -16,20 +16,20 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
       const behaviours: Array<Behaviour> = [];
 
       const regexp = new RegExp(regex, 'g');
-        let match: RegExpExecArray | null;
-        while(match = regexp.exec(input)) {
-          const ax = match.groups?.ax ?? '';
-          const ay = match.groups?.ay ?? '';
-          const bx = match.groups?.bx ?? '';
-          const by = match.groups?.by ?? '';
-          const px = match.groups?.px ?? '';
-          const py = match.groups?.py ?? '';
-          behaviours.push({
-            a: { x: BigInt(ax), y: BigInt(ay) },
-            b: { x: BigInt(bx), y: BigInt(by) },
-            target: { x: BigInt(px), y: BigInt(py) },
-          });
-        };
+      let match: RegExpExecArray | null;
+      while(match = regexp.exec(input)) {
+        const ax = match.groups?.ax ?? '';
+        const ay = match.groups?.ay ?? '';
+        const bx = match.groups?.bx ?? '';
+        const by = match.groups?.by ?? '';
+        const px = match.groups?.px ?? '';
+        const py = match.groups?.py ?? '';
+        behaviours.push({
+          a: { x: BigInt(ax), y: BigInt(ay) },
+          b: { x: BigInt(bx), y: BigInt(by) },
+          target: { x: BigInt(px), y: BigInt(py) },
+        });
+      };
 
       resolve({ behaviours });
     });

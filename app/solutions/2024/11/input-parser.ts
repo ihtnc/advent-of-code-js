@@ -7,13 +7,13 @@ const inputParser: IInputParser<InputData> = async (input: string) => {
       const stones: Array<string> = [];
 
       const regexp = new RegExp(/(?<stone>\d+)/, 'g');
-        let match: RegExpExecArray | null;
-        while(match = regexp.exec(input)) {
-          if (!match.groups?.stone) { continue; }
+      let match: RegExpExecArray | null;
+      while(match = regexp.exec(input)) {
+        if (!match.groups?.stone) { continue; }
 
-          const stone = match.groups.stone;
-          stones.push(stone);
-        };
+        const stone = match.groups.stone;
+        stones.push(stone);
+      };
 
       resolve({ stones });
     });

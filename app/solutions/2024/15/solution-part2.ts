@@ -159,8 +159,7 @@ const expand: ExpandFn = (map, initial) => {
       row.push(symbol1);
 
       let symbol2: SymbolType;
-      switch (copy[y][x])
-      {
+      switch (copy[y][x]) {
         case SymbolType.BOX:
           symbol2 = SymbolType.BOX_END;
           break;
