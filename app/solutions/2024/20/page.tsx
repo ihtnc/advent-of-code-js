@@ -28,7 +28,7 @@ export default async function Page() {
 const renderInfoText = (threshold: number) => {
   return (<>
     Since the minimum value for finding time savings can&apos;t be determined from the input, the result may differ from expected.
-    This solution uses at least
+    This solution looks at least
     <b><code className="text-black dark:text-white">&nbsp;{threshold} picoseconds</code>&nbsp;</b>
     for the minimum time savings.
     <br /><br />

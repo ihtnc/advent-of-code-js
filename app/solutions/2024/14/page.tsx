@@ -35,7 +35,9 @@ export default async function Page() {
 const renderInfoText1 = (width: number, height: number) => {
   return (<>
     Since the map size can&apos;t be determined from the input, the result may differ from expected.
-    This solution uses a
+    This solution calculates after
+    <b><code className="text-black dark:text-white">&nbsp;100 seconds&nbsp;</code></b>
+    for part 1 and assumes a
     <b><code className="text-black dark:text-white">&nbsp;{width}x{height} map</code></b>.
   </>);
 };
