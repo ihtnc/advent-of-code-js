@@ -1,11 +1,20 @@
+import { notFound } from "next/navigation";
 import { getChallengeInput } from "@/solutions/actions";
 
 export async function GET(
   request: Request,
-  { params }: { params: Promise<{ year: number, day: number }> },
+  { params }: { params: Promise<{ year: string, day: string }> },
 ) {
   const { year, day } = await params;
-  const input = await getChallengeInput<string>(year, day);
-  const response = new Response(input);
-  return response;
+
+  if (Number.isInteger(Number(year)) === false || Number.isInteger(Number(day)) === false) {
+    notFound();
+  }
+
+  return getChallengeInput<string>(Number(year), Number(day))
+    .then((input) => {
+      const response = new Response(input);
+      return response;
+    })
+    .catch(() => notFound());
 }
